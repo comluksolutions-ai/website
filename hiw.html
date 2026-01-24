@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How It Works – Comluk</title>
+
+<style>
+  :root {
+    --radius: 28px;
+    --pad: 24px;
+    --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font);
+    background: #f2f2f2;
+    color: #111;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    padding: 40px 24px 32px;
+    text-align: center;
+  }
+
+  .header img {
+    max-width: 160px;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  /* ===== CONTENT ===== */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: var(--pad);
+    margin-bottom: 28px;
+    text-align: center;
+  }
+
+  .card h2 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1.4rem;
+  }
+
+  .card p {
+    margin: 0 0 14px;
+    line-height: 1.6;
+  }
+
+  .card p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ===== FLOATING HOME BUTTON ===== */
+  .home-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    text-decoration: none;
+  }
+
+  .home-icon {
+    width: 16px;
+    height: 14px;
+    position: relative;
+  }
+
+  .home-icon::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+  }
+
+  .home-icon::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 3px;
+    width: 10px;
+    height: 8px;
+    background: #fff;
+    border-radius: 2px;
+  }
+</style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <img src="cbk.png" alt="Comluk Logo">
+    <h1>How it Works</h1>
+  </header>
+
+  <!-- BODY -->
+  <main class="content">
+
+    <section class="card" id="what-is-this">
+      <h2>What This Product Is</h2>
+      <p>The Comluk Digital Business Card is a simple, permanent online profile that replaces traditional paper business cards.</p>
+      <p>Each card opens a single, fast-loading page when someone scans your QR code. From that one page, people can immediately see who you are, what you do, and contact you or visit your online presence with a single tap.</p>
+      <p>Your profile can include direct links to your phone, email, WhatsApp, website, and social media pages. Everything lives in one place, clearly laid out and easy to access.</p>
+      <p>There are no apps to install, no accounts to create, and no subscriptions. Once set up, it works quietly in the background.</p>
+    </section>
+
+    <section class="card" id="scan-flow">
+      <h2>What Happens When Someone Scans the QR</h2>
+      <p>When someone scans your QR code, your digital business card opens instantly in their browser.</p>
+      <p>They can call, message, or visit your online pages with a single tap.</p>
+      <p>The page is fast, clear, and mobile-friendly.</p>
+    </section>
+
+    <section class="card" id="profile-build">
+      <h2>How Profiles Are Built</h2>
+      <p>Your profile is built using the information you submit through the intake form.</p>
+      <p>You provide your details once. There are no dashboards or ongoing setup required.</p>
+      <p>The layout is standardized to ensure long-term stability.</p>
+    </section>
+
+    <section class="card" id="ownership">
+      <h2>Hosting & Ownership</h2>
+      <p>Your digital business card is hosted under your control.</p>
+      <p>You choose where it lives.</p>
+      <p>No subscriptions. No lock-in.</p>
+    </section>
+
+    <section class="card" id="simplicity">
+      <h2>Why This Simplicity Matters</h2>
+      <p>The system is intentionally simple.</p>
+      <p>Once live, it keeps working year after year.</p>
+      <p>It does one job well: connecting people to you.</p>
+    </section>
+
+  </main>
+
+  <!-- FLOATING HOME BUTTON -->
+  <a href="index.html" class="home-btn" aria-label="Back to Home">
+    <div class="home-icon"></div>
+  </a>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Who Is It For – Comluk</title>
+
+<style>
+  :root {
+    --radius: 28px;
+    --pad: 24px;
+    --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font);
+    background: #f2f2f2;
+    color: #111;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    padding: 40px 24px 32px;
+    text-align: center;
+  }
+
+  .header img {
+    max-width: 160px;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  /* ===== CONTENT ===== */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: var(--pad);
+    margin-bottom: 28px;
+    text-align: center;
+  }
+
+  .card img {
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto 18px;
+    display: block;
+    opacity: 0.85;
+  }
+
+  .card h2 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1.4rem;
+  }
+
+  .card p {
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ===== FLOATING HOME BUTTON ===== */
+  .home-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    text-decoration: none;
+  }
+
+  .home-icon {
+    width: 16px;
+    height: 14px;
+    position: relative;
+  }
+
+  .home-icon::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+  }
+
+  .home-icon::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 3px;
+    width: 10px;
+    height: 8px;
+    background: #fff;
+    border-radius: 2px;
+  }
+</style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <img src="cbk.png" alt="Comluk Logo">
+    <h1>Who Is It For</h1>
+  </header>
+
+  <!-- BODY -->
+  <main class="content">
+
+    <section class="card">
+      <img src="placeholder.png" alt="">
+      <h2>Individuals & Solo Professionals</h2>
+      <p>For people who want a clean, professional digital presence without managing a website or juggling multiple platforms.</p>
+    </section>
+
+    <section class="card">
+      <img src="placeholder.png" alt="">
+      <h2>Teams & Organizations</h2>
+      <p>For groups where each member needs their own QR-linked profile while maintaining a consistent presentation.</p>
+    </section>
+
+    <section class="card">
+      <img src="placeholder.png" alt="">
+      <h2>Contractors & Service Providers</h2>
+      <p>For hands-on professionals who need customers to quickly see what they do and contact them on the spot.</p>
+    </section>
+
+    <section class="card">
+      <img src="placeholder.png" alt="">
+      <h2>Real Estate & Property Professionals</h2>
+      <p>For agents who want to link clients directly to their listings, social pages, or contact details from a single scan.</p>
+    </section>
+
+    <section class="card">
+      <img src="placeholder.png" alt="">
+      <h2>Creators & Public-Facing Personal Brands</h2>
+      <p>For people who want to direct attention to their work, platforms, or audience hubs without relying on a single social network.</p>
+    </section>
+
+    <section class="card">
+      <img src="placeholder.png" alt="">
+      <h2>Events, Networking & Physical Touchpoints</h2>
+      <p>For use on business cards, badges, booths, signage, packaging, or any physical item where quick access matters.</p>
+    </section>
+
+    <section class="card">
+      <img src="placeholder.png" alt="">
+      <h2>Replacement for Traditional Business Cards</h2>
+      <p>For anyone moving away from paper cards while keeping the same simple exchange: scan, connect.</p>
+    </section>
+
+  </main>
+
+  <!-- FLOATING HOME BUTTON -->
+  <a href="index.html" class="home-btn" aria-label="Back to Home">
+    <div class="home-icon"></div>
+  </a>
+
+</body>
+</html>

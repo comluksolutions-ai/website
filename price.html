@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pricing & Packages – Comluk</title>
+
+<style>
+  :root {
+    --radius: 28px;
+    --pad: 24px;
+    --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: var(--font);
+    background: #f2f2f2;
+    color: #111;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    padding: 40px 24px 24px;
+    text-align: center;
+  }
+
+  .header img {
+    max-width: 160px;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    margin: 0 0 12px;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .header p {
+    margin: 0 0 8px;
+    font-size: 1rem;
+  }
+
+  .header .fine {
+    font-size: 0.85rem;
+    opacity: 0.75;
+  }
+
+  /* ===== CONTENT ===== */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: var(--pad);
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .plan-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .price {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 8px 0 16px;
+  }
+
+  .desc {
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  /* ===== BULLET LIST FIX ===== */
+  ul {
+    list-style: disc;
+    padding-left: 22px;
+    margin: 0 auto 20px;
+    text-align: left;
+    max-width: 520px;
+  }
+
+  ul li {
+    margin-bottom: 8px;
+  }
+
+  .details {
+    font-size: 0.9rem;
+    opacity: 0.85;
+    margin-bottom: 20px;
+  }
+
+  .buy-btn {
+    display: inline-block;
+    padding: 14px 28px;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+
+  /* ===== FLOATING HOME BUTTON ===== */
+  .home-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    text-decoration: none;
+  }
+
+  .home-icon {
+    width: 16px;
+    height: 14px;
+    position: relative;
+  }
+
+  .home-icon::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+  }
+
+  .home-icon::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 3px;
+    width: 10px;
+    height: 8px;
+    background: #fff;
+    border-radius: 2px;
+  }
+</style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <img src="cbk.png" alt="Comluk Logo">
+    <h1>Pricing & Packages</h1>
+    <p>All plans are one-time purchases.</p>
+    <p class="fine">No subscriptions, renewals, or ongoing platform fees.</p>
+  </header>
+
+  <!-- BODY -->
+  <main class="content">
+
+    <!-- INDIVIDUAL PLAN -->
+    <section class="card">
+      <div class="plan-name">Individual Plan</div>
+      <div class="price">USD $190</div>
+
+      <div class="desc">
+        Designed for individuals and solo professionals who want a simple, reliable digital business card.
+      </div>
+
+      <ul>
+        <li>One digital profile page</li>
+        <li>One QR code linked to that profile</li>
+        <li>Contact actions (call, email, WhatsApp)</li>
+        <li>Links to website and social media</li>
+        <li>Mobile-friendly, clean layout</li>
+      </ul>
+
+      <div class="details">
+        One complete, ready-to-deploy profile page<br>
+        Clear instructions for hosting and use
+      </div>
+
+      <a href="#" class="buy-btn">Buy This Package</a>
+    </section>
+
+    <!-- TEAM PLAN -->
+    <section class="card">
+      <div class="plan-name">Team Plan</div>
+      <div class="price">USD $800</div>
+
+      <div class="desc">
+        Designed for teams, organizations, and client-facing groups deploying digital business cards at scale.
+      </div>
+
+      <ul>
+        <li>Up to 25 individual profile pages</li>
+        <li>25 unique QR codes (one per profile)</li>
+        <li>Unified layout, icons, and typography</li>
+        <li>Shared visual and styling assets</li>
+        <li>Team license agreement</li>
+      </ul>
+
+      <div class="details">
+        Ideal for real estate teams, sales teams, and organizations needing consistent field presence.
+      </div>
+
+      <a href="#" class="buy-btn">Buy This Package</a>
+    </section>
+
+  </main>
+
+  <!-- FLOATING HOME BUTTON -->
+  <a href="index.html" class="home-btn" aria-label="Back to Home">
+    <div class="home-icon"></div>
+  </a>
+
+</body>
+</html>

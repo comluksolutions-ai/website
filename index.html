@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Comluk Digital Business Card</title>
+
+<style>
+  :root {
+    --radius: 28px;
+    --pad: 24px;
+    --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font);
+
+    background: linear-gradient(to bottom, #000 0%, #fff 100%);
+}
+
+  /* =========================
+     HEADER
+     ========================= */
+
+  .site-header {
+    position: relative;
+    padding: 32px 20px 24px; /* PATCH: bottom matches card spacing */
+    text-align: center;
+  }
+
+  .site-logo {
+    width: 140px;
+    max-width: 50vw;
+    margin: 0 auto 14px;
+    display: block;
+filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6))
+        drop-shadow(0 0 18px rgba(255, 255, 255, 0.35));
+  }
+
+  .welcome-title {
+    margin: 0 auto 8px;
+    font-weight: 800;
+    letter-spacing: 0.01em; /* condensed */
+    font-size: clamp(1.4rem, 6vw, 2.1rem);
+    line-height: 1.15;
+    color:#fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+
+    /* PATCH: allow wrap and never truncate */
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .welcome-sub {
+    margin: 0 auto;
+
+    /* PATCH: keep on one line but shrink to fit */
+    width: 100%;
+    max-width: 80vw;
+    white-space: nowrap;
+    font-size: clamp(0.75rem, 3.2vw, 1.05rem);
+
+    color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  /* =========================
+     BURGER
+     ========================= */
+
+  .burger {
+    position: absolute;
+    top: 26px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 30;
+  
+  }
+
+  .burger span {
+    width: 20px;
+    height: 2px;
+    background: #000;
+    position: relative;
+    display: block;
+  }
+
+  .burger span::before,
+  .burger span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 20px;
+    height: 2px;
+    background: #000;
+  }
+
+  .burger span::before { top: -6px; }
+  .burger span::after  { top: 6px; }
+
+  /* =========================
+     MENU + OVERLAY
+     ========================= */
+
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 999;
+  }
+
+  .menu-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 260px;
+    background: #000;
+    color: #fff;
+    padding: 24px;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+  }
+
+  .menu.open {
+    transform: translateX(0);
+  }
+
+  .menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 40px 0 0;
+  }
+
+  .menu li {
+    margin-bottom: 16px;
+  }
+
+  .menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+
+  /* =========================
+     CARDS (UNCHANGED)
+     ========================= */
+
+  .snap-container {
+    width: 100%;
+    padding: 20px 0;
+  }
+
+  .card {
+    padding: 0 16px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .card-inner {
+    width: 100%;
+    max-width: 480px;
+    border-radius: var(--radius);
+    padding: var(--pad);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  }
+
+  .dark {
+    background: #000;
+    color: #fff;
+  }
+
+  .light {
+    background: #fff;
+    color: #000;
+  }
+
+  h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  .image-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-area img {
+    max-width: 100%;
+    max-height: 220px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .text-area {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .text-area p {
+    margin: 0 0 12px 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .text-area ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+
+  .text-area li {
+    margin-bottom: 6px;
+  }
+
+  .cta {
+    margin-top: auto;
+    text-align: center;
+  }
+
+  .cta a {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .dark .cta a {
+    background: #fff;
+    color: #000;
+  }
+
+  .light .cta a {
+    background: #000;
+    color: #fff;
+  }
+
+  /* =========================
+     HEADER BACKGROUND LAYER
+     ========================= */
+
+  .header-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 340px; /* spans header + top of first card */
+    background-image: url('Hedr.png');
+    background-repeat: repeat;
+    background-size: contain;
+    opacity: 0.18;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  body > * {
+    position: relative;
+    z-index: 1;
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="header-bg"></div>
+
+
+<!-- MENU OVERLAY -->
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()">
+  <nav class="menu" id="menu" onclick="event.stopPropagation()">
+    <ul>
+      <li><a href="WIIF.html" onclick="closeMenu()">Who Is It For</a></li>
+      <li><a href="wtpe.html" onclick="closeMenu()">Why This Product Exists</a></li>
+      <li><a href="price.html" onclick="closeMenu()">Pricing & Packages</a></li>
+      <li><a href="faq.html" onclick="closeMenu()">FAQ</a></li>
+      <li><a href="#" onclick="closeMenu()">Placeholder 5</a></li>
+      <li><a href="#" onclick="closeMenu()">Placeholder 6</a></li>
+      <li><a href="#" onclick="closeMenu()">Placeholder 7</a></li>
+      <li><a href="#" onclick="closeMenu()">Placeholder 8</a></li>
+      <li><a href="#" onclick="closeMenu()">Placeholder 9</a></li>
+    </ul>
+  </nav>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="burger" onclick="toggleMenu()">
+    <span></span>
+  </div>
+
+  <img src="cwt.png" alt="Comluk Solutions logo" class="site-logo" />
+
+  <h1 class="welcome-title">WELCOME TO COMLUK SOLUTIONS</h1>
+  <p class="welcome-sub">Simple digital business cards, built to last.</p>
+</header>
+
+<div class="snap-container">
+
+  <!-- ALL 9 ORIGINAL CARDS — UNCHANGED -->
+
+  <section class="card">
+    <div class="card-inner dark">
+      <h2>What Is This?</h2>
+      <div class="image-area"><img src="01.png" alt=""></div>
+      <div class="text-area">
+        <p>A QR-based digital business card.</p>
+        <ul>
+          <li>One page that represents you</li>
+          <li>Opens instantly in any browser</li>
+          <li>No apps, no accounts, no subscriptions</li>
+        </ul>
+      </div>
+      <div class="cta"><a href="hiw.html#what-is-this">More info</a></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-inner light">
+      <h2>Why This Exists</h2>
+      <div class="image-area"><img src="02.png" alt=""></div>
+      <div class="text-area">
+        <p>Sharing contact details shouldn’t be awkward.</p>
+        <ul>
+          <li>No explaining how to find you</li>
+          <li>No scattered links</li>
+          <li>Everything in one place</li>
+        </ul>
+      </div>
+      <div class="cta"><a href="wtpe.html">More info</a></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-inner dark">
+      <h2>What Happens When Someone Scans?</h2>
+      <div class="image-area"><img src="03.png" alt=""></div>
+      <div class="text-area">
+        <p>The profile opens instantly.</p>
+        <ul>
+          <li>See your name and role</li>
+          <li>Understand what you do</li>
+          <li>Contact you with one tap</li>
+        </ul>
+      </div>
+      <div class="cta"><a href="hiw.html#scan-flow">More info</a></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-inner light">
+      <h2>Who Is This For?</h2>
+      <div class="image-area"><img src="04.png" alt=""></div>
+      <div class="text-area">
+        <ul>
+          <li>Individuals and professionals</li>
+          <li>Teams and organizations</li>
+          <li>Contractors and service providers</li>
+        </ul>
+      </div>
+      <div class="cta"><a href="WIIF.html">More info</a></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-inner dark">
+      <h2>Why This Works</h2>
+      <div class="image-area"><img src="05.png" alt=""></div>
+      <div class="text-area">
+        <ul>
+          <li>Same experience on every device</li>
+          <li>No platform dependency</li>
+          <li>Fewer moving parts</li>
+        </ul>
+      </div>
+      <div class="cta"><a href="wtpe.html">More info</a></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-inner light">
+      <h2>What This Is Not</h2>
+      <div class="image-area"><img src="06.png" alt=""></div>
+      <div class="text-area">
+        <ul>
+          <li>No dashboards</li>
+          <li>No user accounts</li>
+          <li>No subscriptions</li>
+        </ul>
+      </div>
+      <div class="cta"><a href="wtpe.html">More info</a></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-inner dark">
+      <h2>Ownership & Control</h2>
+      <div class="image-area"><img src="07.png" alt=""></div>
+      <div class="text-area">
+        <ul>
+          <li>You own the page</li>
+          <li>You choose the host</li>
+          <li>The QR lasts as long as the page</li>
+        </ul>
+      </div>
+      <div class="cta"><a href="hiw.html#ownership">More info</a></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-inner light">
+      <h2>How It’s Offered</h2>
+      <div class="image-area"><img src="08.png" alt=""></div>
+      <div class="text-area">
+        <ul>
+          <li>Individual profiles</li>
+          <li>Team packages</li>
+          <li>One-time setup</li>
+        </ul>
+      </div>
+      <div class="cta"><a href="hiw.html#profile-build">More info</a></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-inner dark">
+      <h2>Pricing & Next Step</h2>
+      <div class="image-area"><img src="09.png" alt=""></div>
+      <div class="text-area">
+        <p>Choose a package and get started.</p>
+      </div>
+      <div class="cta"><a href="price.html">View pricing</a></div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  function toggleMenu() {
+    document.getElementById("menu").classList.toggle("open");
+    document.getElementById("menuOverlay").classList.toggle("open");
+  }
+
+  function closeMenu() {
+    document.getElementById("menu").classList.remove("open");
+    document.getElementById("menuOverlay").classList.remove("open");
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FAQ – Comluk</title>
+
+<style>
+  :root {
+    --radius: 28px;
+    --pad: 24px;
+    --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font);
+    background: #f2f2f2;
+    color: #111;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    padding: 40px 24px 32px;
+    text-align: center;
+  }
+
+  .header img {
+    max-width: 160px;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  /* ===== CONTENT ===== */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: var(--pad);
+  }
+
+  .faq-item {
+    margin-bottom: 28px;
+  }
+
+  .faq-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .faq-item h2 {
+    margin: 0 0 12px;
+    font-size: 1.25rem;
+  }
+
+  .answer-placeholder {
+    height: 36px;
+    border-radius: 12px;
+    background: #f2f2f2;
+    opacity: 0.6;
+  }
+
+  /* ===== FLOATING HOME BUTTON ===== */
+  .home-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    text-decoration: none;
+  }
+
+  .home-icon {
+    width: 16px;
+    height: 14px;
+    position: relative;
+  }
+
+  .home-icon::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+  }
+
+  .home-icon::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 3px;
+    width: 10px;
+    height: 8px;
+    background: #fff;
+    border-radius: 2px;
+  }
+</style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <img src="cbk.png" alt="Comluk Logo">
+    <h1>Frequently Asked Questions</h1>
+  </header>
+
+  <!-- BODY -->
+  <main class="content">
+
+    <section class="card">
+
+      <div class="faq-item">
+        <h2>What exactly am I buying?</h2>
+        <div class="answer-placeholder"></div>
+      </div>
+
+      <div class="faq-item">
+        <h2>Is this a subscription or a one-time purchase?</h2>
+        <div class="answer-placeholder"></div>
+      </div>
+
+      <div class="faq-item">
+        <h2>What happens after I pay?</h2>
+        <div class="answer-placeholder"></div>
+      </div>
+
+      <div class="faq-item">
+        <h2>How long does delivery take?</h2>
+        <div class="answer-placeholder"></div>
+      </div>
+
+      <div class="faq-item">
+        <h2>Can I edit my profile later?</h2>
+        <div class="answer-placeholder"></div>
+      </div>
+
+      <div class="faq-item">
+        <h2>Do I need hosting?</h2>
+        <div class="answer-placeholder"></div>
+      </div>
+
+      <div class="faq-item">
+        <h2>Can I move my profile to another host?</h2>
+        <div class="answer-placeholder"></div>
+      </div>
+
+      <div class="faq-item">
+        <h2>Does this include analytics or tracking?</h2>
+        <div class="answer-placeholder"></div>
+      </div>
+
+      <div class="faq-item">
+        <h2>What’s the difference between Individual and Team?</h2>
+        <div class="answer-placeholder"></div>
+      </div>
+
+      <div class="faq-item">
+        <h2>How does the Team intake work?</h2>
+        <div class="answer-placeholder"></div>
+      </div>
+
+      <div class="faq-item">
+        <h2>Can I customize the design?</h2>
+        <div class="answer-placeholder"></div>
+      </div>
+
+      <div class="faq-item">
+        <h2>What if I make a mistake in my submission?</h2>
+        <div class="answer-placeholder"></div>
+      </div>
+
+      <div class="faq-item">
+        <h2>Will my QR code ever stop working?</h2>
+        <div class="answer-placeholder"></div>
+      </div>
+
+      <div class="faq-item">
+        <h2>Is my information private?</h2>
+        <div class="answer-placeholder"></div>
+      </div>
+
+      <div class="faq-item">
+        <h2>Who do I contact for support?</h2>
+        <div class="answer-placeholder"></div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FLOATING HOME BUTTON -->
+  <a href="index.html" class="home-btn" aria-label="Back to Home">
+    <div class="home-icon"></div>
+  </a>
+
+</body>
+</html>

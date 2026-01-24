@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Why This Product Exists – Comluk</title>
+
+<style>
+  :root {
+    --radius: 28px;
+    --pad: 24px;
+    --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font);
+    background: #f2f2f2;
+    color: #111;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    padding: 40px 24px 32px;
+    text-align: center;
+  }
+
+  .header img {
+    max-width: 160px;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  /* ===== CONTENT ===== */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: var(--pad);
+    text-align: center;
+  }
+
+  .section {
+    margin-bottom: 36px;
+  }
+
+  .section:last-child {
+    margin-bottom: 0;
+  }
+
+  .section h2 {
+    margin: 0 0 14px;
+    font-size: 1.35rem;
+  }
+
+  .section p {
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .section img {
+    width: 100%;
+    max-width: 220px;
+    margin: 24px auto;
+    display: block;
+    opacity: 0.85;
+  }
+
+  /* ===== FLOATING HOME BUTTON ===== */
+  .home-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    text-decoration: none;
+  }
+
+  .home-icon {
+    width: 16px;
+    height: 14px;
+    position: relative;
+  }
+
+  .home-icon::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+  }
+
+  .home-icon::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 3px;
+    width: 10px;
+    height: 8px;
+    background: #fff;
+    border-radius: 2px;
+  }
+</style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <img src="cbk.png" alt="Comluk Logo">
+    <h1>Why This Product Exists</h1>
+  </header>
+
+  <!-- BODY -->
+  <main class="content">
+
+    <section class="card">
+
+      <div class="section">
+        <h2>It Solves a Very Specific Problem</h2>
+        <p>People need a fast, reliable way to share who they are and how to be reached—without explaining, repeating, or relying on memory.</p>
+        <img src="placeholder.png" alt="">
+      </div>
+
+      <div class="section">
+        <h2>It Reduces Friction at the Point of Contact</h2>
+        <p>Scanning a QR code is easier than saving a number, searching a name, or remembering a username.</p>
+        <img src="placeholder.png" alt="">
+      </div>
+
+      <div class="section">
+        <h2>Everything Lives in One Place</h2>
+        <p>Contact details, social links, and context are centralized, so nothing gets lost or forgotten.</p>
+        <img src="placeholder.png" alt="">
+      </div>
+
+      <div class="section">
+        <h2>It Works Everywhere, the Same Way</h2>
+        <p>The experience is consistent across phones, platforms, and locations.</p>
+        <img src="placeholder.png" alt="">
+      </div>
+
+      <div class="section">
+        <h2>It Doesn’t Depend on Trends or Platforms</h2>
+        <p>The system isn’t tied to social networks, apps, or changing algorithms.</p>
+        <img src="placeholder.png" alt="">
+      </div>
+
+      <div class="section">
+        <h2>It Prioritizes Longevity Over Features</h2>
+        <p>Simple structure means fewer points of failure and a longer usable lifespan.</p>
+        <img src="placeholder.png" alt="">
+      </div>
+
+      <div class="section">
+        <h2>The QR Becomes the Brand Anchor</h2>
+        <p>The visual and creative expression can live on the physical item, while the scan leads to clean, reliable information.</p>
+        <img src="placeholder.png" alt="">
+      </div>
+
+      <div class="section">
+        <h2>Ownership Is Clear and Simple</h2>
+        <p>There’s no ongoing dependency or hidden obligation once the profile is delivered.</p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FLOATING HOME BUTTON -->
+  <a href="index.html" class="home-btn" aria-label="Back to Home">
+    <div class="home-icon"></div>
+  </a>
+
+</body>
+</html>
