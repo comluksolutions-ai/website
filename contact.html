@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" style="--color-base: #000000;"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comluk Solutions Bio</title>
+
+<style>
+:root {
+  --color-base: #f7b731;
+  --color-bg-top: #ffffff;
+  --color-text: #111;
+  --font-head: 'HED';
+  --font-body: 'TEX';
+  --card-radius: 18px;
+  --icon-radius: 50%;
+  --shadow-soft: 0 10px 24px rgba(0,0,0,0.08);
+  --gradient-top-stop: 20%;
+}
+
+@font-face { font-family: 'HED'; src: url('image/hed.ttf'); }
+@font-face { font-family: 'TEX'; src: url('image/bod.ttf'); }
+
+* { box-sizing: border-box; margin:0; padding:0; }
+
+body {
+  font-family: var(--font-body), Arial, sans-serif;
+  min-height:100vh;
+  background: linear-gradient(
+    180deg,
+    var(--color-bg-top) 0%,
+    var(--color-bg-top) var(--gradient-top-stop),
+    var(--color-base) 100%
+  );
+  color: var(--color-text);
+}
+
+.page { max-width:420px; margin:0 auto; padding:16px; }
+
+.card {
+  background: rgba(255,255,255,0.95);
+  border-radius: var(--card-radius);
+  padding:16px;
+  margin-bottom:16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.hero-image { padding:0; position:relative; overflow:hidden; }
+.hero-image img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; }
+
+.social-row { position:absolute; bottom:10px; right:10px; display:flex; gap:8px; }
+.social-link { display:none; }
+.social-link:not([href=""]) { display:inline-flex; }
+
+.social-dot {
+  width:36px; height:36px;
+  border-radius: var(--icon-radius);
+  background: var(--color-base);
+  display:flex; align-items:center; justify-content:center;
+}
+
+.social-dot img { width:18px; height:18px; }
+
+.identity { text-align:center; }
+.name { font-family:var(--font-head); font-size:34px; }
+.title { font-size:15px; letter-spacing:2px; opacity:.85; }
+
+.section-title { font-family:var(--font-head); font-size:22px; margin-bottom:8px; }
+.about-text { font-size:14px; line-height:1.5; }
+
+.contact-list { display:grid; row-gap:10px; }
+.contact-item { display:flex; gap:10px; text-decoration:none; color:var(--color-text); }
+.contact-icon {
+  width:32px; height:32px;
+  border-radius:var(--icon-radius);
+  background:var(--color-base);
+  display:flex; align-items:center; justify-content:center;
+}
+.contact-icon img { width:16px; height:16px; }
+
+.skill-card {
+  background: color-mix(in srgb, var(--color-base) 15%, transparent);
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:12px;
+}
+.skill-title { font-family:var(--font-head); font-size:18px; }
+
+.work-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:10px;
+}
+
+.work-item {
+  display:none;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.work-item:not([href=""]) { display:block; }
+
+.work-item img {
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  display:block;
+}
+
+.no-work-text { opacity:.75; margin-top:6px; }
+.past-work:has(.work-item:not([href=""])) .no-work-text { display:none; }
+
+.lightbox {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+.lightbox:target { display:flex; }
+.lightbox img { max-width:96%; max-height:92%; }
+
+.close {
+  position:absolute;
+  top:16px; right:16px;
+  font-family:var(--font-head);
+  font-size:30px;
+  color:#fff;
+  text-decoration:none;
+}
+
+.footer { text-align:center; font-size:12px; opacity:.85; margin-top:24px; }
+.footer a { display:block; font-family:var(--font-head); color:inherit; }
+
+/* Default footer color */
+.footer {
+  color: #fff;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+/* Optional: footer on dark/colored backgrounds */
+body.dark-page .footer {
+  color: #111;
+}
+
+/* Small spacing between footer lines (safe) */
+.footer a:first-of-type {
+  margin-bottom: 6px;
+}
+
+/* 4. Slight hierarchy for footer text (optional but safe) */
+.footer {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.footer a:first-of-type {
+  margin-bottom: 6px;
+}
+
+</style>
+</head>
+
+<body>
+<div class="page">
+
+<div class="card hero-image">
+  <img src="image/prof.png">
+  <div class="social-row">
+    <a class="social-link" href="https://comluksolutions-ai.github.io/website/"><div class="social-dot"><img src="image/web.png"></div></a>
+    <a class="social-link" href=""><div class="social-dot"><img src="image/ig.png"></div></a>
+    <a class="social-link" href=""><div class="social-dot"><img src="image/in.png"></div></a>
+    <a class="social-link" href=""><div class="social-dot"><img src="image/fb.png"></div></a>
+  </div>
+</div>
+
+<div class="card identity">
+  <div class="name">COMLUK SOLUTIONS</div>
+  <div class="title">Digital Tools &amp; Platforms Company</div>
+</div>
+
+<div class="card">
+  <div class="section-title" data-bind="section.about.title">ABOUT US</div>
+  <div class="about-text">Comluk Solutions designs simple, durable digital systems that support real-world interaction rather than replace it. Our work focuses on clarity, coordination, and ownership, creating tools that quietly do their job without unnecessary complexity. We build with the long term in mind, prioritizing systems that remain useful, adaptable, and human-centered over time.</div>
+</div>
+
+<div class="card">
+  <div class="section-title">CONTACT</div>
+  <div class="contact-list">
+    <a class="contact-item" href="tel:1-876-344-2334">
+      <div class="contact-icon"><img src="image/pho.png"></div>
+      <span>1-876-344-2334</span>
+    </a>
+    <a class="contact-item" href="mailto:Comluksolutions@gmail.com">
+      <div class="contact-icon"><img src="image/mai.png"></div>
+      <span>Comluksolutions@gmail.com</span>
+    </a>
+    <a class="contact-item" href="https://wa.me/1-876-344-2334">
+      <div class="contact-icon"><img src="image/wha.png"></div>
+      <span>WhatsApp</span>
+    </a></div>
+</div>
+
+<div class="card"><div class="section-title">SERVICES</div>
+        <div class="skill-card">
+          <div class="skill-title">Digital Profile &amp; Identity Systems</div>
+          <div class="skill-text">We design digital profile systems that help people present who they are and what they offer with clarity and intention. These systems are built to be simple, durable, and adaptable across different real-world contexts.</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-title">Public-Space Digital Platforms</div>
+          <div class="skill-text">We develop digital platforms intended to live in physical spaces and support real-world interaction. Each platform is designed to connect people with information, services, or opportunities without removing the human element.</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-title">Digitally Coordinated Physical Experiences</div>
+          <div class="skill-text">We create systems that use digital tools to structure, guide, or enhance real-world activities. The technology remains in the background, quietly coordinating flow, timing, and participation while the experience itself happens between people.</div>
+        </div></div>
+
+<div class="card past-work" id="past-work">
+  <div class="section-title" data-bind="section.work.title">Product Samples</div>
+  <div class="no-work-text">No images available.</div>
+  <div class="work-grid"></div>
+</div>
+
+<footer class="footer">
+  Created by
+  
+  <a><strong>©Comluk Solutions . All rights reserved</strong></a>
+  <a href="https://comluksolutions-ai.github.io/website/" data-bind="footer.cta">Get your own page</a>
+</footer>
+
+</div>
+
+
+
+
+
+
+</body></html>
