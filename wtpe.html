@@ -6,213 +6,198 @@
 <title>Why This Product Exists – Comluk</title>
 
 <style>
-  :root {
-    --radius: 28px;
-    --pad: 24px;
-    --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
+:root {
+  --radius: 28px;
+  --pad: 24px;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-  * {
-    box-sizing: border-box;
-  }
+  --gx: 50%;
+  --gy: 120px;
+}
 
-  body {
-    margin: 0;
-    font-family: var(--font);
-    background: #f2f2f2;
-    color: #111;
-  }
+* { box-sizing: border-box; }
 
-  /* ===== HEADER ===== */
-  .header {
-    padding: 40px 24px 32px;
-    text-align: center;
-  }
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: #111;
+  overflow-x: hidden;
 
-  .header img {
-    max-width: 160px;
-    margin-bottom: 16px;
-  }
+  background:
+    radial-gradient(circle at var(--gx) var(--gy),
+      #f2f2f2 0%,
+      #f2f2f2 3%,
+      #dedede 3%,
+      #dedede 7%,
+      #c8c8c8 7%,
+      #c8c8c8 12%,
+      #b0b0b0 12%,
+      #b0b0b0 18%,
+      #969696 18%,
+      #969696 25%,
+      #7c7c7c 25%,
+      #7c7c7c 33%,
+      #626262 33%,
+      #626262 42%,
+      #4a4a4a 42%,
+      #4a4a4a 100%
+    );
+}
 
-  .header h1 {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: 700;
-  }
+/* ===== HEADER (LEFT) ===== */
+.header {
+  position: relative;
+  z-index: 2;
+  padding: 40px 24px 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
 
-  /* ===== CONTENT ===== */
-  .content {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 24px;
-  }
+.logo-anchor {
+  display: inline-block;
+}
 
-  .card {
-    background: #fff;
-    border-radius: var(--radius);
-    padding: var(--pad);
-    text-align: center;
-  }
+.header img {
+  max-width: 160px;
+  display: block;
+  margin-bottom: 12px;
+}
 
-  .section {
-    margin-bottom: 36px;
-  }
+.header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
 
-  .section:last-child {
-    margin-bottom: 0;
-  }
+/* ===== CONTENT ===== */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
 
-  .section h2 {
-    margin: 0 0 14px;
-    font-size: 1.35rem;
-  }
+/* ===== CARD ===== */
+.card {
+  position: relative;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: var(--pad);
+  text-align: center; /* KEEP CENTERED BODY */
+  box-shadow: 0 14px 40px rgba(0,0,0,0.30);
+  overflow: hidden;
+}
 
-  .section p {
-    margin: 0;
-    line-height: 1.6;
-  }
+/* Bottom gradient */
+.card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 10%;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.30) 0%,
+    rgba(0,0,0,0.18) 40%,
+    rgba(0,0,0,0.00) 100%
+  );
+  pointer-events: none;
+}
 
-  .section img {
-    width: 100%;
-    max-width: 220px;
-    margin: 24px auto;
-    display: block;
-    opacity: 0.85;
-  }
+.section {
+  margin-bottom: 36px;
+}
 
-  /* ===== FLOATING HOME BUTTON ===== */
-  .home-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-    text-decoration: none;
-  }
+.section:last-child {
+  margin-bottom: 0;
+}
 
-  .home-icon {
-    width: 16px;
-    height: 14px;
-    position: relative;
-  }
+.section h2 {
+  margin: 0 0 14px;
+  font-size: 1.35rem;
+}
 
-  .home-icon::before {
-    content: "";
-    position: absolute;
-    top: -6px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid #fff;
-  }
+.section p {
+  margin: 0;
+  line-height: 1.45;
+  padding-bottom: 12px;
+  position: relative;
+}
 
-  .home-icon::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 3px;
-    width: 10px;
-    height: 8px;
-    background: #fff;
-    border-radius: 2px;
-  }
-</style>
-</head>
+/* Subtle paragraph separator */
+.section p::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0),
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0)
+  );
+}
 
-<body>
+.section img {
+  width: 100%;
+  max-width: 220px;
+  margin: 24px auto;
+  display: block;
+  opacity: 0.85;
+}
 
-  <!-- HEADER -->
-  <header class="header">
-    <img src="cbk.png" alt="Comluk Logo">
-    <h1>Why This Product Exists</h1>
-  </header>
+/* ===== HOME BUTTON ===== */
+.home-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  text-decoration: none;
+}
 
-  <!-- BODY -->
-  <main class="content">
+.home-icon {
+  width: 16px;
+  height: 14px;
+  position: relative;
+}
 
-    <section class="card">
+.home-icon::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #fff;
+}
 
-      <div class="section">
-        <h2>It Solves a Very Specific Problem</h2>
-        <p>People need a fast, reliable way to share who they are and how to be reached—without explaining, repeating, or relying on memory.</p>
-        <img src="placeholder.png" alt="">
-      </div>
+.home-icon::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 3px;
+  width: 10px;
+  height: 8px;
+  background: #fff;
+  border-radius: 2px;
+}
 
-      <div class="section">
-        <h2>It Reduces Friction at the Point of Contact</h2>
-        <p>Scanning a QR code is easier than saving a number, searching a name, or remembering a username.</p>
-        <img src="placeholder.png" alt="">
-      </div>
-
-      <div class="section">
-        <h2>Everything Lives in One Place</h2>
-        <p>Contact details, social links, and context are centralized, so nothing gets lost or forgotten.</p>
-        <img src="placeholder.png" alt="">
-      </div>
-
-      <div class="section">
-        <h2>It Works Everywhere, the Same Way</h2>
-        <p>The experience is consistent across phones, platforms, and locations.</p>
-        <img src="placeholder.png" alt="">
-      </div>
-
-      <div class="section">
-        <h2>It Doesn’t Depend on Trends or Platforms</h2>
-        <p>The system isn’t tied to social networks, apps, or changing algorithms.</p>
-        <img src="placeholder.png" alt="">
-      </div>
-
-      <div class="section">
-        <h2>It Prioritizes Longevity Over Features</h2>
-        <p>Simple structure means fewer points of failure and a longer usable lifespan.</p>
-        <img src="placeholder.png" alt="">
-      </div>
-
-      <div class="section">
-        <h2>The QR Becomes the Brand Anchor</h2>
-        <p>The visual and creative expression can live on the physical item, while the scan leads to clean, reliable information.</p>
-        <img src="placeholder.png" alt="">
-      </div>
-
-      <div class="section">
-        <h2>Ownership Is Clear and Simple</h2>
-        <p>There’s no ongoing dependency or hidden obligation once the profile is delivered.</p>
-      </div>
-
-    </section>
-
-  </main>
-
-  <!-- FLOATING HOME BUTTON -->
-  <a href="index.html" class="home-btn" aria-label="Back to Home">
-    <div class="home-icon"></div>
-  </a>
-
-<!-- ===== FOOTER ===== -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <p class="footer-copy">
-      © 2026 Comluk Solutions. All rights reserved.
-    </p>
-    <p class="footer-links">
-      <a href="terms.html">Terms of Use</a>
-      <span class="divider">·</span>
-      <a href="privacy.html">Privacy Policy</a>
-    </p>
-  </div>
-</footer>
-
-<style>
+/* ===== FOOTER ===== */
 .site-footer {
   margin-top: 1px;
   padding: 24px 16px 40px;
@@ -227,9 +212,7 @@
   font-weight: 500;
 }
 
-.site-footer a:hover {
-  text-decoration: underline;
-}
+.site-footer a:hover { text-decoration: underline; }
 
 .footer-inner {
   max-width: 900px;
@@ -247,8 +230,111 @@
 .divider {
   margin: 0 6px;
 }
+
+.home-icon-img {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
 </style>
-<!-- ===== END FOOTER ===== -->
+
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo-anchor" id="logoAnchor">
+    <img src="cbk.png" alt="Comluk Logo">
+  </div>
+  <h1>Why This Product Exists</h1>
+</header>
+
+<main class="content">
+
+<section class="card">
+
+  <div class="section">
+    <h2>It Solves a Very Specific Problem</h2>
+    <p>People need a fast, reliable way to share who they are and how to be reached—without explaining, repeating, or relying on memory.</p>
+    <img src="placeholder.png" alt="">
+  </div>
+
+  <div class="section">
+    <h2>It Reduces Friction at the Point of Contact</h2>
+    <p>Scanning a QR code is easier than saving a number, searching a name, or remembering a username.</p>
+    <img src="placeholder.png" alt="">
+  </div>
+
+  <div class="section">
+    <h2>Everything Lives in One Place</h2>
+    <p>Contact details, social links, and context are centralized, so nothing gets lost or forgotten.</p>
+    <img src="placeholder.png" alt="">
+  </div>
+
+  <div class="section">
+    <h2>It Works Everywhere, the Same Way</h2>
+    <p>The experience is consistent across phones, platforms, and locations.</p>
+    <img src="placeholder.png" alt="">
+  </div>
+
+  <div class="section">
+    <h2>It Doesn’t Depend on Trends or Platforms</h2>
+    <p>The system isn’t tied to social networks, apps, or changing algorithms.</p>
+    <img src="placeholder.png" alt="">
+  </div>
+
+  <div class="section">
+    <h2>It Prioritizes Longevity Over Features</h2>
+    <p>Simple structure means fewer points of failure and a longer usable lifespan.</p>
+    <img src="placeholder.png" alt="">
+  </div>
+
+  <div class="section">
+    <h2>The QR Becomes the Brand Anchor</h2>
+    <p>The visual and creative expression can live on the physical item, while the scan leads to clean, reliable information.</p>
+    <img src="placeholder.png" alt="">
+  </div>
+
+  <div class="section">
+    <h2>Ownership Is Clear and Simple</h2>
+    <p>There’s no ongoing dependency or hidden obligation once the profile is delivered.</p>
+  </div>
+
+</section>
+
+</main>
+
+<a href="index.html" class="home-btn" aria-label="Back to Home">
+  <img src="rtrn.png" alt="Back" class="home-icon-img">
+</a>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-copy">© 2026 Comluk Solutions. All rights reserved.</p>
+    <p class="footer-links">
+      <a href="terms.html">Terms of Use</a>
+      <span class="divider">·</span>
+      <a href="privacy.html">Privacy Policy</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+const logo = document.getElementById('logoAnchor');
+
+function updateGradientCenter() {
+  const rect = logo.getBoundingClientRect();
+  const gx = rect.left + rect.width / 2;
+  const gy = rect.top + rect.height / 2 + window.scrollY;
+
+  document.documentElement.style.setProperty('--gx', gx + 'px');
+  document.documentElement.style.setProperty('--gy', gy + 'px');
+}
+
+window.addEventListener('scroll', updateGradientCenter, { passive: true });
+window.addEventListener('resize', updateGradientCenter);
+updateGradientCenter();
+</script>
 
 </body>
 </html>
