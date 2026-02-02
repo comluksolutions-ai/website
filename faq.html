@@ -6,235 +6,167 @@
 <title>FAQ – Comluk</title>
 
 <style>
-  :root {
-    --radius: 28px;
-    --pad: 24px;
-    --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
+:root {
+  --radius: 28px;
+  --pad: 24px;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --gx: 50%;
+  --gy: 120px;
+}
 
-  * {
-    box-sizing: border-box;
-  }
+* { box-sizing: border-box; }
 
-  body {
-    margin: 0;
-    font-family: var(--font);
-    background: #f2f2f2;
-    color: #111;
-  }
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: #111;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at var(--gx) var(--gy),
+      #f2f2f2 0%,
+      #f2f2f2 3%,
+      #dedede 3%,
+      #dedede 7%,
+      #c8c8c8 7%,
+      #c8c8c8 12%,
+      #b0b0b0 12%,
+      #b0b0b0 18%,
+      #969696 18%,
+      #969696 25%,
+      #7c7c7c 25%,
+      #7c7c7c 33%,
+      #626262 33%,
+      #626262 42%,
+      #4a4a4a 42%,
+      #4a4a4a 100%
+    );
+}
 
-  /* ===== HEADER ===== */
-  .header {
-    padding: 40px 24px 32px;
-    text-align: center;
-  }
+/* ===== HEADER (WTPE MATCH) ===== */
+.header {
+  position: relative;
+  z-index: 2;
+  padding: 40px 24px 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
 
-  .header img {
-    max-width: 160px;
-    margin-bottom: 16px;
-  }
+.logo-anchor img {
+  max-width: 160px;
+  display: block;
+  margin-bottom: 12px;
+}
 
-  .header h1 {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: 700;
-  }
+.header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
 
-  /* ===== CONTENT ===== */
-  .content {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 24px;
-  }
+/* ===== CONTENT ===== */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
 
-  .card {
-    background: #fff;
-    border-radius: var(--radius);
-    padding: var(--pad);
-  }
+/* ===== CARD ===== */
+.card {
+  position: relative;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: var(--pad);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.30);
+  overflow: hidden;
+}
 
-  .faq-item {
-    margin-bottom: 28px;
-  }
+.card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 10%;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.30) 0%,
+    rgba(0,0,0,0.18) 40%,
+    rgba(0,0,0,0.00) 100%
+  );
+  pointer-events: none;
+}
 
-  .faq-item:last-child {
-    margin-bottom: 0;
-  }
+/* ===== FAQ ===== */
+.faq-item {
+  border-bottom: 1px solid #e6e6e6;
+  padding: 18px 0;
+}
+.faq-item:last-child { border-bottom: none; }
 
-  .faq-item h2 {
-    margin: 0 0 12px;
-    font-size: 1.25rem;
-  }
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
 
-  .answer-placeholder {
-    height: 36px;
-    border-radius: 12px;
-    background: #f2f2f2;
-    opacity: 0.6;
-  }
+.faq-question span {
+  font-size: 1.4rem;
+  transition: transform 0.25s ease;
+}
 
-  /* ===== FLOATING HOME BUTTON ===== */
-  .home-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-    text-decoration: none;
-  }
+.faq-item.open .faq-question span {
+  transform: rotate(45deg);
+}
 
-  .home-icon {
-    width: 16px;
-    height: 14px;
-    position: relative;
-  }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
 
-  .home-icon::before {
-    content: "";
-    position: absolute;
-    top: -6px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid #fff;
-  }
+.faq-item.open .faq-answer {
+  max-height: 600px;
+}
 
-  .home-icon::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 3px;
-    width: 10px;
-    height: 8px;
-    background: #fff;
-    border-radius: 2px;
-  }
-</style>
-</head>
+.faq-answer p {
+  margin: 14px 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
+}
 
-<body>
+/* ===== FLOATING RETURN BUTTON ===== */
+.home-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  text-decoration: none;
+}
 
-  <!-- HEADER -->
-  <header class="header">
-    <img src="cbk.png" alt="Comluk Logo">
-    <h1>Frequently Asked Questions</h1>
-  </header>
+.home-btn img {
+  width: 22px;
+  height: 22px;
+}
 
-  <!-- BODY -->
-  <main class="content">
-
-    <section class="card">
-
-      <div class="faq-item">
-        <h2>What exactly am I buying?</h2>
-        <div class="answer-placeholder"></div>
-      </div>
-
-      <div class="faq-item">
-        <h2>Is this a subscription or a one-time purchase?</h2>
-        <div class="answer-placeholder"></div>
-      </div>
-
-      <div class="faq-item">
-        <h2>What happens after I pay?</h2>
-        <div class="answer-placeholder"></div>
-      </div>
-
-      <div class="faq-item">
-        <h2>How long does delivery take?</h2>
-        <div class="answer-placeholder"></div>
-      </div>
-
-      <div class="faq-item">
-        <h2>Can I edit my profile later?</h2>
-        <div class="answer-placeholder"></div>
-      </div>
-
-      <div class="faq-item">
-        <h2>Do I need hosting?</h2>
-        <div class="answer-placeholder"></div>
-      </div>
-
-      <div class="faq-item">
-        <h2>Can I move my profile to another host?</h2>
-        <div class="answer-placeholder"></div>
-      </div>
-
-      <div class="faq-item">
-        <h2>Does this include analytics or tracking?</h2>
-        <div class="answer-placeholder"></div>
-      </div>
-
-      <div class="faq-item">
-        <h2>What’s the difference between Individual and Team?</h2>
-        <div class="answer-placeholder"></div>
-      </div>
-
-      <div class="faq-item">
-        <h2>How does the Team intake work?</h2>
-        <div class="answer-placeholder"></div>
-      </div>
-
-      <div class="faq-item">
-        <h2>Can I customize the design?</h2>
-        <div class="answer-placeholder"></div>
-      </div>
-
-      <div class="faq-item">
-        <h2>What if I make a mistake in my submission?</h2>
-        <div class="answer-placeholder"></div>
-      </div>
-
-      <div class="faq-item">
-        <h2>Will my QR code ever stop working?</h2>
-        <div class="answer-placeholder"></div>
-      </div>
-
-      <div class="faq-item">
-        <h2>Is my information private?</h2>
-        <div class="answer-placeholder"></div>
-      </div>
-
-      <div class="faq-item">
-        <h2>Who do I contact for support?</h2>
-        <div class="answer-placeholder"></div>
-      </div>
-
-    </section>
-
-  </main>
-
-  <!-- FLOATING HOME BUTTON -->
-  <a href="index.html" class="home-btn" aria-label="Back to Home">
-    <div class="home-icon"></div>
-  </a>
-
-<!-- ===== FOOTER ===== -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <p class="footer-copy">
-      © 2026 Comluk Solutions. All rights reserved.
-    </p>
-    <p class="footer-links">
-      <a href="terms.html">Terms of Use</a>
-      <span class="divider">·</span>
-      <a href="privacy.html">Privacy Policy</a>
-    </p>
-  </div>
-</footer>
-
-<style>
+/* ===== FOOTER ===== */
 .site-footer {
-  margin-top: 1px;
-  padding: 24px 16px 40px;
+  position: relative;
+  z-index: 2;
+  padding: 28px 16px 40px;
   text-align: center;
   font-size: 0.85rem;
   color: #666;
@@ -246,28 +178,105 @@
   font-weight: 500;
 }
 
-.site-footer a:hover {
-  text-decoration: underline;
-}
-
 .footer-inner {
   max-width: 900px;
   margin: 0 auto;
 }
 
-.footer-copy {
-  margin: 0 0 8px;
-}
-
-.footer-links {
-  margin: 0;
-}
-
-.divider {
-  margin: 0 6px;
-}
+.divider { margin: 0 6px; }
 </style>
-<!-- ===== END FOOTER ===== -->
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo-anchor" id="logoAnchor">
+    <img id="logoImg" src="cbk.png" alt="Comluk Logo">
+  </div>
+  <h1>Frequently Asked Questions</h1>
+</header>
+
+<main class="content">
+<section class="card">
+
+<!-- FULL FAQ SET (from Faq2.html) -->
+
+<div class="faq-item"><div class="faq-question">What exactly am I buying?<span>+</span></div><div class="faq-answer"><p>You are purchasing a one-time setup of a digital business card: a single, fast-loading profile web page paired with a QR code that links directly to it.</p></div></div>
+
+<div class="faq-item"><div class="faq-question">Is this a subscription or a one-time purchase?<span>+</span></div><div class="faq-answer"><p>This is a one-time purchase. There are no subscriptions, renewals, or ongoing platform fees.</p></div></div>
+
+<div class="faq-item"><div class="faq-question">What happens after I pay?<span>+</span></div><div class="faq-answer"><p>After payment is manually confirmed, you receive a unique onboarding link by email. You use that link to submit your information, after which your profile web page is prepared and delivered.</p></div></div>
+
+<div class="faq-item"><div class="faq-question">How long does delivery take?<span>+</span></div><div class="faq-answer"><p>Individual packages are delivered within 3 business days. Team packages are delivered within 5 business days after payment confirmation and receipt of all required information.</p></div></div>
+
+<div class="faq-item"><div class="faq-question">Can I edit my profile later?<span>+</span></div><div class="faq-answer"><p>Your profile is built from the information you submit during onboarding. Corrections are supported for errors related to submitted information, but there is no self-editing dashboard.</p></div></div>
+
+<div class="faq-item"><div class="faq-question">Do I need hosting?<span>+</span></div><div class="faq-answer"><p>Yes. You choose where your digital business card is hosted. Comluk Solutions does not lock you into any hosting platform.</p></div></div>
+
+<div class="faq-item"><div class="faq-question">Can I move my profile to another host?<span>+</span></div><div class="faq-answer"><p>Yes, but moving the HTML file changes the page URL. If the URL changes, the QR code will no longer point correctly unless you reroute the old link or update the QR code.</p></div></div>
+
+<div class="faq-item"><div class="faq-question">Does this include analytics or tracking?<span>+</span></div><div class="faq-answer"><p>No analytics or tracking are included by default. Any analytics depend entirely on the hosting provider you choose.</p></div></div>
+
+<div class="faq-item"><div class="faq-question">What’s the difference between Individual and Team?<span>+</span></div><div class="faq-answer"><p>The Individual plan includes one profile and one QR code. The Team plan includes up to 25 individual profiles, each with its own QR code and a unified layout.</p></div></div>
+
+<div class="faq-item"><div class="faq-question">How does the Team intake work?<span>+</span></div><div class="faq-answer"><p>After payment confirmation, team members submit their details through the onboarding process. All profiles follow the same design structure.</p></div></div>
+
+<div class="faq-item"><div class="faq-question">Can I customize the design?<span>+</span></div><div class="faq-answer"><p>The layout is standardized for long-term reliability. Customization is limited to your content such as text, images, and links.</p></div></div>
+
+<div class="faq-item"><div class="faq-question">What if I make a mistake in my submission?<span>+</span></div><div class="faq-answer"><p>If a mistake is identified, you may request a correction. Revisions are limited to errors based on submitted information.</p></div></div>
+
+<div class="faq-item"><div class="faq-question">Will my QR code ever stop working?<span>+</span></div><div class="faq-answer"><p>The QR code works as long as the profile page remains available at the same URL. Moving or renaming the file without rerouting will break the link.</p></div></div>
+
+<div class="faq-item"><div class="faq-question">Is my information private?<span>+</span></div><div class="faq-answer"><p>Information submitted during onboarding is used only to create your profile. The profile page itself is public by design.</p></div></div>
+
+<div class="faq-item"><div class="faq-question">Who do I contact for support?<span>+</span></div><div class="faq-answer"><p>You can contact Comluk Solutions using the contact details provided on the website.</p></div></div>
+
+</section>
+</main>
+
+<a href="index.html" class="home-btn" aria-label="Back to Home">
+  <img src="rtrn.png" alt="Return">
+</a>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>© 2026 Comluk Solutions. All rights reserved.</p>
+    <p>
+      <a href="terms.html">Terms of Use</a>
+      <span class="divider">·</span>
+      <a href="privacy.html">Privacy Policy</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    q.parentElement.classList.toggle('open');
+  });
+});
+
+const logoImg = document.getElementById('logoImg');
+
+function updateGradientCenter() {
+  if (!logoImg) return;
+  const r = logoImg.getBoundingClientRect();
+  const gx = r.left + (r.width / 2) + window.scrollX;
+  const gy = r.top + (r.height / 2) + window.scrollY;
+  document.documentElement.style.setProperty('--gx', gx + 'px');
+  document.documentElement.style.setProperty('--gy', gy + 'px');
+}
+
+window.addEventListener('scroll', updateGradientCenter, { passive: true });
+window.addEventListener('resize', updateGradientCenter);
+
+// Make sure image dimensions are settled before first compute
+window.addEventListener('load', () => {
+  updateGradientCenter();
+  // One extra frame helps on some mobile browsers after layout settles
+  requestAnimationFrame(updateGradientCenter);
+});
+</script>
 
 </body>
 </html>
