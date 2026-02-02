@@ -106,7 +106,7 @@ main {
 
 .brands img {
   height: 50px;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25))
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,1))
 }
 
 /* ================== COMLUK LOGO ================== */
@@ -180,7 +180,14 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
+.home-icon-img {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
 </style>
+
 </head>
 
 <body>
@@ -221,18 +228,22 @@ footer a:hover {
       </p>
     </section>
 
+    <!-- Comluk Solutions logo -->
+    <div class="comluk">
+      <img src="cbk.png" alt="Comluk Solutions">
+    </div>
 
     <!-- Sub-brand logos (optional) -->
     <div class="brands">
       <img src="ck.png" alt="Sub-brand 1">
       <img src="ci.png" alt="Sub-brand 2">
-      <img src="cs.png" alt="Sub-brand 3">
+      <img src="cbk.png" alt="Sub-brand 3">
     </div>
   </section>
 </main>
 
 <a href="index.html" class="home-btn" aria-label="Home">
-  <div class="home-icon"></div>
+  <img src="rtrn.png" alt="Back" class="home-icon-img">
 </a>
 
 <footer>
