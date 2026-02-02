@@ -6,240 +6,300 @@
 <title>Pricing & Packages – Comluk</title>
 
 <style>
-  :root {
-    --radius: 28px;
-    --pad: 24px;
-    --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
+:root {
+  --radius: 28px;
+  --pad: 24px;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-  * { box-sizing: border-box; }
+  /* Radial gradient center (updated via JS) */
+  --gx: 50%;
+  --gy: 120px;
+}
 
-  body {
-    margin: 0;
-    font-family: var(--font);
-    background: #f2f2f2;
-    color: #111;
-  }
+* { box-sizing: border-box; }
 
-  /* ===== HEADER ===== */
-  .header {
-    padding: 40px 24px 24px;
-    text-align: center;
-  }
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: #111;
+  overflow-x: hidden;
 
-  .header img {
-    max-width: 160px;
-    margin-bottom: 16px;
-  }
+  /* SAME RADIAL FIELD AS HIW2 */
+  background:
+    radial-gradient(circle at var(--gx) var(--gy),
+      #f2f2f2 0%,
+      #f2f2f2 3%,
+      #dedede 3%,
+      #dedede 7%,
+      #c8c8c8 7%,
+      #c8c8c8 12%,
+      #b0b0b0 12%,
+      #b0b0b0 18%,
+      #969696 18%,
+      #969696 25%,
+      #7c7c7c 25%,
+      #7c7c7c 33%,
+      #626262 33%,
+      #626262 42%,
+      #4a4a4a 42%,
+      #4a4a4a 100%
+    );
+}
 
-  .header h1 {
-    margin: 0 0 12px;
-    font-size: 2rem;
-    font-weight: 700;
-  }
+/* ===== HEADER ===== */
+.header {
+  padding: 40px 24px 24px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
 
-  .header p {
-    margin: 0 0 8px;
-    font-size: 1rem;
-  }
+.header img {
+  max-width: 160px;
+  margin-bottom: 16px;
+}
 
-  .header .fine {
-    font-size: 0.85rem;
-    opacity: 0.75;
-  }
+.header h1 {
+  margin: 0 0 12px;
+  font-size: 2rem;
+  font-weight: 700;
+}
 
-  /* ===== CONTENT ===== */
-  .content {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 24px;
-  }
+.header p {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  line-height: 1.45;
+}
 
-  .card {
-    background: #fff;
-    border-radius: var(--radius);
-    padding: var(--pad);
-    margin-bottom: 32px;
-    text-align: center;
-  }
+.header .fine {
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
 
-  .plan-name {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
+/* ===== CONTENT ===== */
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+  position: relative;
+  z-index: 2;
+}
 
-  .price {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 8px 0 16px;
-  }
+/* ===== CARD ===== */
+.card {
+  position: relative;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: var(--pad);
+  margin-bottom: 32px;
+  text-align: center;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.30);
+  overflow: hidden;
+}
 
-  .desc {
-    margin-bottom: 20px;
-    line-height: 1.6;
-  }
+/* Bottom gradient (same system as HIW2) */
+.card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 10%;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.30) 0%,
+    rgba(0,0,0,0.18) 40%,
+    rgba(0,0,0,0.00) 100%
+  );
+  pointer-events: none;
+}
 
-  /* ===== BULLET LIST FIX ===== */
-  ul {
-    list-style: disc;
-    padding-left: 22px;
-    margin: 0 auto 20px;
-    text-align: left;
-    max-width: 520px;
-  }
+.plan-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
 
-  ul li {
-    margin-bottom: 8px;
-  }
+.price {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 8px 0 16px;
+}
 
-  .details {
-    font-size: 0.9rem;
-    opacity: 0.85;
-    margin-bottom: 20px;
-  }
+.desc {
+  margin-bottom: 20px;
+  line-height: 1.45;
+}
 
-  .buy-btn {
-    display: inline-block;
-    padding: 14px 28px;
-    background: #000;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 999px;
-    font-weight: 600;
-  }
+/* Subtle separator under description */
+.desc {
+  padding-bottom: 14px;
+  position: relative;
+}
 
-  /* ===== FLOATING HOME BUTTON ===== */
-  .home-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-    text-decoration: none;
-  }
+.desc::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0),
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0)
+  );
+}
 
-  .home-icon {
-    width: 16px;
-    height: 14px;
-    position: relative;
-  }
+ul {
+  list-style: disc;
+  padding-left: 22px;
+  margin: 16px auto 20px;
+  text-align: left;
+  max-width: 520px;
+}
 
-  .home-icon::before {
-    content: "";
-    position: absolute;
-    top: -6px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid #fff;
-  }
+ul li {
+  margin-bottom: 8px;
+  line-height: 1.45;
+}
 
-  .home-icon::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 3px;
-    width: 10px;
-    height: 8px;
-    background: #fff;
-    border-radius: 2px;
-  }
-</style>
-</head>
+.details {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  margin-bottom: 20px;
+  line-height: 1.45;
+}
 
-<body>
+.buy-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 600;
+}
 
-  <!-- HEADER -->
-  <header class="header">
-    <img src="cbk.png" alt="Comluk Logo">
-    <h1>Pricing & Packages</h1>
-    <p>All plans are one-time purchases.</p>
-    <p class="fine">No subscriptions, renewals, or ongoing platform fees.</p>
-  </header>
+/* ===== MODAL ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
 
-  <!-- BODY -->
-  <main class="content">
+.modal-card {
+  background: #000;
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 28px;
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+}
 
-    <!-- INDIVIDUAL PLAN -->
-    <section class="card">
-      <div class="plan-name">Individual Plan</div>
-      <div class="price">USD $190</div>
+.modal-card h2 {
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  opacity: 0.8;
+}
 
-      <div class="desc">
-        Designed for individuals and solo professionals who want a simple, reliable digital business card.
-      </div>
+.modal-card .brand {
+  margin: 6px 0 18px;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
 
-      <ul>
-        <li>One digital profile page</li>
-        <li>One QR code linked to that profile</li>
-        <li>Contact actions (call, email, WhatsApp)</li>
-        <li>Links to website and social media</li>
-        <li>Mobile-friendly, clean layout</li>
-      </ul>
+.modal-card p {
+  margin: 0 0 14px;
+  line-height: 1.45;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
 
-      <div class="details">
-        One complete, ready-to-deploy profile page<br>
-        Clear instructions for hosting and use
-      </div>
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
 
-      <a href="https://www.paypal.com/ncp/payment/H4EDCXH5HSTAE" class="buy-btn">Buy This Package</a>
-    </section>
+.modal-actions button {
+  appearance: none;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+}
 
-    <!-- TEAM PLAN -->
-    <section class="card">
-      <div class="plan-name">Team Plan</div>
-      <div class="price">USD $800</div>
+.modal-continue {
+  background: #fff;
+  color: #000;
+}
 
-      <div class="desc">
-        Designed for teams, organizations, and client-facing groups deploying digital business cards at scale.
-      </div>
+.modal-back {
+  background: #2a2a2a;
+  color: #fff;
+}
 
-      <ul>
-        <li>Up to 25 individual profile pages</li>
-        <li>25 unique QR codes (one per profile)</li>
-        <li>Unified layout, icons, and typography</li>
-        <li>Shared visual and styling assets</li>
-        <li>Team license agreement</li>
-      </ul>
+/* ===== HOME BUTTON ===== */
+.home-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  text-decoration: none;
+}
 
-      <div class="details">
-        Ideal for real estate teams, sales teams, and organizations needing consistent field presence.
-      </div>
+.home-icon {
+  width: 16px;
+  height: 14px;
+  position: relative;
+}
 
-      <a href="https://www.paypal.com/ncp/payment/B8XJN2CY7PH4L" class="buy-btn">Buy This Package</a>
-    </section>
+.home-icon::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #fff;
+}
 
-  </main>
+.home-icon::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 3px;
+  width: 10px;
+  height: 8px;
+  background: #fff;
+  border-radius: 2px;
+}
 
-  <!-- FLOATING HOME BUTTON -->
-  <a href="index.html" class="home-btn" aria-label="Back to Home">
-    <div class="home-icon"></div>
-  </a>
-
-<!-- ===== FOOTER ===== -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <p class="footer-copy">
-      © 2026 Comluk Solutions. All rights reserved.
-    </p>
-    <p class="footer-links">
-      <a href="terms.html">Terms of Use</a>
-      <span class="divider">·</span>
-      <a href="privacy.html">Privacy Policy</a>
-    </p>
-  </div>
-</footer>
-
-<style>
+/* ===== FOOTER ===== */
 .site-footer {
   margin-top: 1px;
   padding: 24px 16px 40px;
@@ -254,9 +314,7 @@
   font-weight: 500;
 }
 
-.site-footer a:hover {
-  text-decoration: underline;
-}
+.site-footer a:hover { text-decoration: underline; }
 
 .footer-inner {
   max-width: 900px;
@@ -274,8 +332,149 @@
 .divider {
   margin: 0 6px;
 }
+
+.home-icon-img {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
 </style>
-<!-- ===== END FOOTER ===== -->
+
+</head>
+
+<body>
+
+<header class="header">
+  <img src="cbk.png" alt="Comluk Logo" id="logoAnchor">
+  <h1>Pricing & Packages</h1>
+  <p>All plans are one-time purchases.</p>
+  <p class="fine">No subscriptions, renewals, or ongoing platform fees.</p>
+</header>
+
+<main class="content">
+
+  <section class="card">
+    <div class="plan-name">Individual Plan</div>
+    <div class="price">USD $190</div>
+    <div class="desc">
+      Designed for individuals and solo professionals who want a simple, reliable digital business card.
+    </div>
+    <ul>
+      <li>One digital profile page</li>
+      <li>One QR code linked to that profile</li>
+      <li>Contact actions (call, email, WhatsApp)</li>
+      <li>Links to website and social media</li>
+      <li>Mobile-friendly, clean layout</li>
+    </ul>
+    <div class="details">
+      One complete, ready-to-deploy profile page<br>
+      Clear instructions for hosting and use
+    </div>
+    <a href="https://www.paypal.com/ncp/payment/H4EDCXH5HSTAE" class="buy-btn js-buy" data-paypal="https://www.paypal.com/ncp/payment/H4EDCXH5HSTAE">Buy This Package</a>
+  </section>
+
+  <section class="card">
+    <div class="plan-name">Team Plan</div>
+    <div class="price">USD $800</div>
+    <div class="desc">
+      Designed for teams, organizations, and client-facing groups deploying digital business cards at scale.
+    </div>
+    <ul>
+      <li>Up to 25 individual profile pages</li>
+      <li>25 unique QR codes (one per profile)</li>
+      <li>Unified layout, icons, and typography</li>
+      <li>Shared visual and styling assets</li>
+      <li>Team license agreement</li>
+    </ul>
+    <div class="details">
+      Ideal for real estate teams, sales teams, and organizations needing consistent field presence.
+    </div>
+    <a href="https://www.paypal.com/ncp/payment/B8XJN2CY7PH4L" class="buy-btn js-buy" data-paypal="https://www.paypal.com/ncp/payment/B8XJN2CY7PH4L">Buy This Package</a>
+  </section>
+
+</main>
+
+<div class="modal-overlay" id="payModal">
+  <div class="modal-card">
+    <h2>BEFORE YOU CONTINUE</h2>
+    <p>You’re about to make a payment to</p>
+    <div class="brand">COMLUK SOLUTIONS</div>
+    <p>
+      After payment, you’ll receive an email with a unique onboarding link to submit your information.
+    </p>
+    <p>
+      Review our <a href="terms.html" target="_blank" rel="noopener noreferrer" style="color:#fff;text-decoration:underline;">Terms of Use</a> if you’d like more details.
+    </p>
+
+    <div class="modal-actions">
+      <button class="modal-continue" id="payModalContinue">Continue to PayPal</button>
+      <button class="modal-back" id="payModalBack">Go back</button>
+    </div>
+  </div>
+</div>
+
+<a href="index.html" class="home-btn" aria-label="Back to Home">
+  <img src="rtrn.png" alt="Back" class="home-icon-img">
+</a>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-copy">© 2026 Comluk Solutions. All rights reserved.</p>
+    <p class="footer-links">
+      <a href="terms.html">Terms of Use</a>
+      <span class="divider">·</span>
+      <a href="privacy.html">Privacy Policy</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+const logo = document.getElementById('logoAnchor');
+
+function updateGradientCenter() {
+  const rect = logo.getBoundingClientRect();
+  const gx = rect.left + rect.width / 2;
+  const gy = rect.top + rect.height / 2 + window.scrollY;
+
+  document.documentElement.style.setProperty('--gx', gx + 'px');
+  document.documentElement.style.setProperty('--gy', gy + 'px');
+}
+
+window.addEventListener('scroll', updateGradientCenter, { passive: true });
+window.addEventListener('resize', updateGradientCenter);
+updateGradientCenter();
+
+(function () {
+  var modal = document.getElementById('payModal');
+  var btnContinue = document.getElementById('payModalContinue');
+  var btnBack = document.getElementById('payModalBack');
+  var pendingUrl = null;
+
+  document.querySelectorAll('.js-buy').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      pendingUrl = a.getAttribute('data-paypal') || a.getAttribute('href');
+      modal.style.display = 'flex';
+    });
+  });
+
+  btnContinue.addEventListener('click', function () {
+    if (pendingUrl) window.location.href = pendingUrl;
+  });
+
+  btnBack.addEventListener('click', function () {
+    modal.style.display = 'none';
+    pendingUrl = null;
+  });
+
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+      pendingUrl = null;
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
