@@ -6,201 +6,201 @@
 <title>Who Is It For – Comluk</title>
 
 <style>
-  :root {
-    --radius: 28px;
-    --pad: 24px;
-    --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
+:root {
+  --radius: 28px;
+  --pad: 26px;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-  * {
-    box-sizing: border-box;
-  }
+  /* Radial gradient center (updated via JS) */
+  --gx: 50%;
+  --gy: 120px;
+}
 
-  body {
-    margin: 0;
-    font-family: var(--font);
-    background: #f2f2f2;
-    color: #111;
-  }
+* { box-sizing: border-box; }
 
-  /* ===== HEADER ===== */
-  .header {
-    padding: 40px 24px 32px;
-    text-align: center;
-  }
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: #111;
+  overflow-x: hidden;
 
-  .header img {
-    max-width: 160px;
-    margin-bottom: 16px;
-  }
+  /* SAME RADIAL BACKGROUND AS HIW2 */
+  background:
+    radial-gradient(circle at var(--gx) var(--gy),
+      #f2f2f2 0%,
+      #f2f2f2 3%,
+      #dedede 3%,
+      #dedede 7%,
+      #c8c8c8 7%,
+      #c8c8c8 12%,
+      #b0b0b0 12%,
+      #b0b0b0 18%,
+      #969696 18%,
+      #969696 25%,
+      #7c7c7c 25%,
+      #7c7c7c 33%,
+      #626262 33%,
+      #626262 42%,
+      #4a4a4a 42%,
+      #4a4a4a 100%
+    );
+}
 
-  .header h1 {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: 700;
-  }
+/* ===== HEADER ===== */
+.header {
+  position: relative;
+  z-index: 2;
+  padding: 32px 24px 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
 
-  /* ===== CONTENT ===== */
-  .content {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 24px;
-  }
+.logo-anchor {
+  display: inline-block;
+}
 
-  .card {
-    background: #fff;
-    border-radius: var(--radius);
-    padding: var(--pad);
-    margin-bottom: 28px;
-    text-align: center;
-  }
+.header img {
+  max-width: 140px;
+  display: block;
+}
 
-  .card img {
-    width: 100%;
-    max-width: 220px;
-    margin: 0 auto 18px;
-    display: block;
-    opacity: 0.85;
-  }
+.header h1 {
+  margin: 16px 0 0;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #111;
+}
 
-  .card h2 {
-    margin-top: 0;
-    margin-bottom: 16px;
-    font-size: 1.4rem;
-  }
+/* ===== CONTENT ===== */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
 
-  .card p {
-    margin: 0;
-    line-height: 1.6;
-  }
+/* ===== CARD ===== */
+.card {
+  position: relative;
+  background: #ffffff;
+  border-radius: var(--radius);
+  padding: var(--pad);
+  margin-bottom: 30px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.30);
+  overflow: hidden;
+  text-align: left;
+}
 
-  /* ===== FLOATING HOME BUTTON ===== */
-  .home-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-    text-decoration: none;
-  }
+/* Bottom gradient overlay (same as HIW2) */
+.card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 10%;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.30) 0%,
+    rgba(0,0,0,0.18) 40%,
+    rgba(0,0,0,0.00) 100%
+  );
+  pointer-events: none;
+}
 
-  .home-icon {
-    width: 16px;
-    height: 14px;
-    position: relative;
-  }
+.card img {
+  width: 100%;
+  max-width: 220px;
+  margin: 0 0 18px;
+  display: block;
+  opacity: 0.85;
+}
 
-  .home-icon::before {
-    content: "";
-    position: absolute;
-    top: -6px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid #fff;
-  }
+.card h2 {
+  margin: 0 0 16px;
+  font-size: 1.35rem;
+}
 
-  .home-icon::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 3px;
-    width: 10px;
-    height: 8px;
-    background: #fff;
-    border-radius: 2px;
-  }
-</style>
-</head>
+/* TEXT REFINEMENTS (MATCH HIW2) */
+.card p {
+  margin: 0 0 12px;
+  line-height: 1.45;
+}
 
-<body>
+/* Subtle paragraph separators */
+.card p:not(:last-child) {
+  padding-bottom: 12px;
+  position: relative;
+}
 
-  <!-- HEADER -->
-  <header class="header">
-    <img src="cbk.png" alt="Comluk Logo">
-    <h1>Who Is It For</h1>
-  </header>
+.card p:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0)
+  );
+}
 
-  <!-- BODY -->
-  <main class="content">
+.card p:last-child { margin-bottom: 0; }
 
-    <section class="card">
-      <img src="placeholder.png" alt="">
-      <h2>Individuals & Solo Professionals</h2>
-      <p>For people who want a clean, professional digital presence without managing a website or juggling multiple platforms.</p>
-    </section>
+/* ===== HOME BUTTON ===== */
+.home-btn {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  text-decoration: none;
+}
 
-    <section class="card">
-      <img src="placeholder.png" alt="">
-      <h2>Teams & Organizations</h2>
-      <p>For groups where each member needs their own QR-linked profile while maintaining a consistent presentation.</p>
-    </section>
+.home-icon {
+  width: 16px;
+  height: 14px;
+  position: relative;
+}
 
-    <section class="card">
-      <img src="placeholder.png" alt="">
-      <h2>Contractors & Service Providers</h2>
-      <p>For hands-on professionals who need customers to quickly see what they do and contact them on the spot.</p>
-    </section>
+.home-icon::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #fff;
+}
 
-    <section class="card">
-      <img src="placeholder.png" alt="">
-      <h2>Real Estate & Property Professionals</h2>
-      <p>For agents who want to link clients directly to their listings, social pages, or contact details from a single scan.</p>
-    </section>
+.home-icon::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 3px;
+  width: 10px;
+  height: 8px;
+  background: #fff;
+  border-radius: 2px;
+}
 
-    <section class="card">
-      <img src="placeholder.png" alt="">
-      <h2>Creators & Public-Facing Personal Brands</h2>
-      <p>For people who want to direct attention to their work, platforms, or audience hubs without relying on a single social network.</p>
-    </section>
-
-    <section class="card">
-      <img src="placeholder.png" alt="">
-      <h2>Events, Networking & Physical Touchpoints</h2>
-      <p>For use on business cards, badges, booths, signage, packaging, or any physical item where quick access matters.</p>
-    </section>
-
-    <section class="card">
-      <img src="placeholder.png" alt="">
-      <h2>Replacement for Traditional Business Cards</h2>
-      <p>For anyone moving away from paper cards while keeping the same simple exchange: scan, connect.</p>
-    </section>
-
-  </main>
-
-  <!-- FLOATING HOME BUTTON -->
-  <a href="index.html" class="home-btn" aria-label="Back to Home">
-    <div class="home-icon"></div>
-  </a>
-
-<!-- ===== FOOTER ===== -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <p class="footer-copy">
-      © 2026 Comluk Solutions. All rights reserved.
-    </p>
-    <p class="footer-links">
-      <a href="terms.html">Terms of Use</a>
-      <span class="divider">·</span>
-      <a href="privacy.html">Privacy Policy</a>
-    </p>
-  </div>
-</footer>
-
-<style>
+/* ===== FOOTER ===== */
 .site-footer {
-  margin-top: 1px;
-  padding: 24px 16px 40px;
+  position: relative;
+  z-index: 2;
+  padding: 28px 16px 40px;
   text-align: center;
   font-size: 0.85rem;
   color: #666;
@@ -212,9 +212,7 @@
   font-weight: 500;
 }
 
-.site-footer a:hover {
-  text-decoration: underline;
-}
+.site-footer a:hover { text-decoration: underline; }
 
 .footer-inner {
   max-width: 900px;
@@ -232,8 +230,102 @@
 .divider {
   margin: 0 6px;
 }
+
+.home-icon-img {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
 </style>
-<!-- ===== END FOOTER ===== -->
+
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo-anchor" id="logoAnchor">
+    <img src="cbk.png" alt="Comluk Logo">
+  </div>
+  <h1>Who Is It For</h1>
+</header>
+
+<main class="content">
+
+<section class="card">
+  <img src="placeholder.png" alt="">
+  <h2>Individuals & Solo Professionals</h2>
+  <p>For people who want a clean, professional digital presence without managing a website or juggling multiple platforms.</p>
+</section>
+
+<section class="card">
+  <img src="placeholder.png" alt="">
+  <h2>Teams & Organizations</h2>
+  <p>For groups where each member needs their own QR-linked profile while maintaining a consistent presentation.</p>
+</section>
+
+<section class="card">
+  <img src="placeholder.png" alt="">
+  <h2>Contractors & Service Providers</h2>
+  <p>For hands-on professionals who need customers to quickly see what they do and contact them on the spot.</p>
+</section>
+
+<section class="card">
+  <img src="placeholder.png" alt="">
+  <h2>Real Estate & Property Professionals</h2>
+  <p>For agents who want to link clients directly to their listings, social pages, or contact details from a single scan.</p>
+</section>
+
+<section class="card">
+  <img src="placeholder.png" alt="">
+  <h2>Creators & Public-Facing Personal Brands</h2>
+  <p>For people who want to direct attention to their work, platforms, or audience hubs without relying on a single social network.</p>
+</section>
+
+<section class="card">
+  <img src="placeholder.png" alt="">
+  <h2>Events, Networking & Physical Touchpoints</h2>
+  <p>For use on business cards, badges, booths, signage, packaging, or any physical item where quick access matters.</p>
+</section>
+
+<section class="card">
+  <img src="placeholder.png" alt="">
+  <h2>Replacement for Traditional Business Cards</h2>
+  <p>For anyone moving away from paper cards while keeping the same simple exchange: scan, connect.</p>
+</section>
+
+</main>
+
+<a href="index.html" class="home-btn" aria-label="Back to Home">
+  <img src="rtrn.png" alt="Back" class="home-icon-img">
+</a>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-copy">© 2026 Comluk Solutions. All rights reserved.</p>
+    <p class="footer-links">
+      <a href="terms.html">Terms of Use</a>
+      <span class="divider">·</span>
+      <a href="privacy.html">Privacy Policy</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+const logo = document.getElementById('logoAnchor');
+
+function updateGradientCenter() {
+  const rect = logo.getBoundingClientRect();
+  const gx = rect.left + rect.width / 2;
+  const gy = rect.top + rect.height / 2 + window.scrollY;
+
+  document.documentElement.style.setProperty('--gx', gx + 'px');
+  document.documentElement.style.setProperty('--gy', gy + 'px');
+}
+
+window.addEventListener('scroll', updateGradientCenter, { passive: true });
+window.addEventListener('resize', updateGradientCenter);
+updateGradientCenter();
+</script>
 
 </body>
 </html>
