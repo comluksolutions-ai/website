@@ -6,222 +6,289 @@
 <title>How It Works – Comluk</title>
 
 <style>
-  :root {
-    --radius: 28px;
-    --pad: 24px;
-    --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
+:root {
+  --radius: 28px;
+  --pad: 26px;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    font-family: var(--font);
-    background: #f2f2f2;
-    color: #111;
-  }
-
-  /* ===== HEADER ===== */
-  .header {
-    padding: 40px 24px 32px;
-    text-align: center;
-  }
-
-  .header img {
-    max-width: 160px;
-    margin-bottom: 16px;
-  }
-
-  .header h1 {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: 700;
-  }
-
-  /* ===== CONTENT ===== */
-  .content {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 24px;
-  }
-
-  .card {
-    background: #fff;
-    border-radius: var(--radius);
-    padding: var(--pad);
-    margin-bottom: 28px;
-    text-align: center;
-  }
-
-  .card h2 {
-    margin-top: 0;
-    margin-bottom: 16px;
-    font-size: 1.4rem;
-  }
-
-  .card p {
-    margin: 0 0 14px;
-    line-height: 1.6;
-  }
-
-  .card p:last-child {
-    margin-bottom: 0;
-  }
-
-  /* ===== FLOATING HOME BUTTON ===== */
-  .home-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-    text-decoration: none;
-  }
-
-  .home-icon {
-    width: 16px;
-    height: 14px;
-    position: relative;
-  }
-
-  .home-icon::before {
-    content: "";
-    position: absolute;
-    top: -6px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid #fff;
-  }
-
-  .home-icon::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 3px;
-    width: 10px;
-    height: 8px;
-    background: #fff;
-    border-radius: 2px;
-  }
-</style>
-</head>
-
-<body>
-
-  <!-- HEADER -->
-  <header class="header">
-    <img src="cbk.png" alt="Comluk Logo">
-    <h1>How it Works</h1>
-  </header>
-
-  <!-- BODY -->
-  <main class="content">
-
-    <section class="card" id="what-is-this">
-      <h2>What This Product Is</h2>
-      <p>The Comluk Digital Business Card is a simple, permanent online profile that replaces traditional paper business cards.</p>
-      <p>Each card opens a single, fast-loading page when someone scans your QR code. From that one page, people can immediately see who you are, what you do, and contact you or visit your online presence with a single tap.</p>
-      <p>Your profile can include direct links to your phone, email, WhatsApp, website, and social media pages. Everything lives in one place, clearly laid out and easy to access.</p>
-      <p>There are no apps to install, no accounts to create, and no subscriptions. Once set up, it works quietly in the background.</p>
-    </section>
-
-    <section class="card" id="scan-flow">
-      <h2>What Happens When Someone Scans the QR</h2>
-      <p>When someone scans your QR code, your digital business card opens instantly in their browser.</p>
-      <p>They can call, message, or visit your online pages with a single tap.</p>
-      <p>The page is fast, clear, and mobile-friendly.</p>
-    </section>
-
-    <section class="card" id="profile-build">
-      <h2>How Profiles Are Built</h2>
-      <p>Your profile is built using the information you submit through the intake form.</p>
-      <p>You provide your details once. There are no dashboards or ongoing setup required.</p>
-      <p>The layout is standardized to ensure long-term stability.</p>
-    </section>
-
-    <section class="card" id="ownership">
-      <h2>Hosting & Ownership</h2>
-      <p>Your digital business card is hosted under your control.</p>
-      <p>You choose where it lives.</p>
-      <p>No subscriptions. No lock-in.</p>
-    </section>
-
-    <section class="card" id="simplicity">
-      <h2>Why This Simplicity Matters</h2>
-      <p>The system is intentionally simple.</p>
-      <p>Once live, it keeps working year after year.</p>
-      <p>It does one job well: connecting people to you.</p>
-    </section>
-
-  </main>
-
-  <!-- FLOATING HOME BUTTON -->
-  <a href="index.html" class="home-btn" aria-label="Back to Home">
-    <div class="home-icon"></div>
-  </a>
-
-<!-- ===== FOOTER ===== -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <p class="footer-copy">
-      © 2026 Comluk Solutions. All rights reserved.
-    </p>
-    <p class="footer-links">
-      <a href="terms.html">Terms of Use</a>
-      <span class="divider">·</span>
-      <a href="privacy.html">Privacy Policy</a>
-    </p>
-  </div>
-</footer>
-
-<style>
-.site-footer {
-  margin-top: 1px;
-  padding: 24px 16px 40px;
-  text-align: center;
-  font-size: 0.85rem;
-  color: #666;
+  /* Radial gradient center (updated via JS) */
+  --gx: 50%;
+  --gy: 120px;
 }
 
-.site-footer a {
-  color: #666;
-  text-decoration: none;
-  font-weight: 500;
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: #111;
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(circle at var(--gx) var(--gy),
+      #f2f2f2 0%,
+      #f2f2f2 3%,
+      #dedede 3%,
+      #dedede 7%,
+      #c8c8c8 7%,
+      #c8c8c8 12%,
+      #b0b0b0 12%,
+      #b0b0b0 18%,
+      #969696 18%,
+      #969696 25%,
+      #7c7c7c 25%,
+      #7c7c7c 33%,
+      #626262 33%,
+      #626262 42%,
+      #4a4a4a 42%,
+      #4a4a4a 100%
+    );
 }
 
-.site-footer a:hover {
-  text-decoration: underline;
-}
-
-.footer-inner {
+/* ===== HEADER ===== */
+.header {
+  position: relative;
+  z-index: 2;
+  padding: 32px 24px 16px;
   max-width: 900px;
   margin: 0 auto;
 }
 
-.footer-copy {
-  margin: 0 0 8px;
+.logo-anchor { display: inline-block; }
+
+.header img {
+  max-width: 140px;
+  display: block;
 }
 
-.footer-links {
-  margin: 0;
+.header h1 {
+  margin: 16px 0 0;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #111;
 }
 
-.divider {
-  margin: 0 6px;
+/* ===== CONTENT ===== */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* ===== CARD ===== */
+.card {
+  position: relative;
+  background: #ffffff;
+  border-radius: var(--radius);
+  padding: var(--pad);
+  margin-bottom: 30px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.30);
+  overflow: hidden;
+}
+
+/* Bottom gradient overlay */
+.card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 10%;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.30) 0%,
+    rgba(0,0,0,0.18) 40%,
+    rgba(0,0,0,0.00) 100%
+  );
+  pointer-events: none;
+}
+
+.card h2 {
+  margin: 0 0 16px;
+  font-size: 1.35rem;
+}
+
+/* TEXT REFINEMENTS */
+.card p {
+  margin: 0 0 12px;
+  line-height: 1.45;
+}
+
+/* Subtle paragraph separators */
+.card p:not(:last-child) {
+  padding-bottom: 12px;
+  position: relative;
+}
+
+.card p:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0)
+  );
+}
+
+.card p:last-child { margin-bottom: 0; }
+
+/* ===== HOME BUTTON ===== */
+.home-btn {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  text-decoration: none;
+}
+
+.home-icon {
+  width: 16px;
+  height: 14px;
+  position: relative;
+}
+
+.home-icon::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #fff;
+}
+
+.home-icon::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 3px;
+  width: 10px;
+  height: 8px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+  position: relative;
+  z-index: 2;
+  padding: 28px 16px 40px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #e0e0e0;
+}
+
+.site-footer a {
+  color: #e0e0e0;
+  text-decoration: none;
+}
+
+.site-footer a:hover { text-decoration: underline; }
+
+.home-icon-img {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 </style>
-<!-- ===== END FOOTER ===== -->
+
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo-anchor" id="logoAnchor">
+    <img src="cbk.png" alt="Comluk Logo">
+  </div>
+  <h1>How It Works</h1>
+</header>
+
+<main class="content">
+
+<section class="card">
+  <h2>What This Product Is</h2>
+  <p>The Comluk Digital Business Card is a simple, permanent online profile that replaces traditional paper business cards.</p>
+  <p>Each card opens a single, fast-loading page when someone scans your QR code.</p>
+  <p>From that one page, people can immediately see who you are, what you do, and contact you or visit your online presence with a single tap.</p>
+  <p>Your profile can include direct links to your phone, email, WhatsApp, website, and social media pages.</p>
+</section>
+
+<section class="card">
+  <h2>What Happens When Someone Scans the QR</h2>
+  <p>Your digital business card opens instantly in their browser.</p>
+  <p>They can call, message, or visit your online pages with a single tap.</p>
+  <p>The page is fast, clear, and mobile-friendly.</p>
+</section>
+
+<section class="card">
+  <h2>How Profiles Are Built</h2>
+  <p>Your profile is built using the information you submit through the intake form.</p>
+  <p>You provide your details once. There are no dashboards or ongoing setup required.</p>
+  <p>The layout is standardized to ensure long-term stability.</p>
+</section>
+
+<section class="card">
+  <h2>What Happens After You Purchase</h2>
+  <p>Once your purchase is completed, Comluk Solutions manually confirms the transaction.</p>
+  <p>After confirmation, you receive a unique onboarding link to submit your details.</p>
+  <p>This allows us to review submissions for accuracy and deliver your profile correctly.</p>
+</section>
+
+<section class="card">
+  <h2>Hosting & Ownership</h2>
+  <p>You choose where your digital business card lives.</p>
+  <p>No subscriptions. No lock-in.</p>
+</section>
+
+<section class="card">
+  <h2>Why This Simplicity Matters</h2>
+  <p>The system is intentionally simple.</p>
+  <p>Once live, it keeps working year after year.</p>
+  <p>It does one job well: connecting people to you.</p>
+</section>
+
+</main>
+
+<a href="index.html" class="home-btn" aria-label="Back to Home">
+  <img src="rtrn.png" alt="Back" class="home-icon-img">
+</a>
+
+<footer class="site-footer">
+  <p>© 2026 Comluk Solutions. All rights reserved.</p>
+  <p><a href="terms.html">Terms of Use</a> · <a href="privacy.html">Privacy Policy</a></p>
+</footer>
+
+<script>
+const logo = document.getElementById('logoAnchor');
+
+function updateGradientCenter() {
+  const rect = logo.getBoundingClientRect();
+  const gx = rect.left + rect.width / 2;
+  const gy = rect.top + rect.height / 2 + window.scrollY;
+
+  document.documentElement.style.setProperty('--gx', gx + 'px');
+  document.documentElement.style.setProperty('--gy', gy + 'px');
+}
+
+window.addEventListener('scroll', updateGradientCenter, { passive: true });
+window.addEventListener('resize', updateGradientCenter);
+updateGradientCenter();
+</script>
 
 </body>
 </html>
