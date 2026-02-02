@@ -6,7 +6,7 @@
 <title>Comluk Digital Business Card</title>
 
 <style>
-  :root {
+:root {
     --radius: 28px;
     --pad: 24px;
     --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -77,20 +77,20 @@ filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6))
      ========================= */
 
   .burger {
-    position: absolute;
-    top: 26px;
-    left: 20px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 30;
-  
-  }
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 4000; /* above everything */
+  transition: transform 0.25s ease;
+}
 
   .burger span {
     width: 20px;
@@ -289,6 +289,121 @@ filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6))
     z-index: 1;
   }
 
+/* =========================
+   LAUNCHER NAVIGATION
+   ========================= */
+
+/* When launcher is open: lock the page */
+body.launcher-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* Bottom-right burger (floating above everything) */
+.burger {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3002;
+  transition: transform 0.25s ease;
+}
+
+.burger.active { transform: rotate(90deg); }
+
+.burger span {
+  width: 22px;
+  height: 2px;
+  background: #000;
+  position: relative;
+  display: block;
+}
+
+.burger span::before,
+.burger span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 2px;
+  background: #000;
+}
+
+.burger span::before { top: -6px; }
+.burger span::after  { top:  6px; }
+
+/* Overlay (blocks taps + scrolling when open) */
+.launcher-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 3500; /* blocks page, under burger */
+}
+
+.launcher-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Pill stack: dots on the RIGHT, aligned above burger */
+.launcher {
+  position: fixed;
+  bottom: 90px; /* pills ABOVE burger */
+  right: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+  z-index: 3600;
+}
+
+.launcher.open { pointer-events: auto; }
+
+.launcher a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 18px;
+  background: #fff;
+  color: #000;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  transform: translateY(10px) scale(0.95);
+  opacity: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.launcher.open a {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.launcher .dot {
+  width: 8px;
+  height: 8px;
+  background: #000;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Small safety: keep last card from sitting under the burger */
+.snap-container {
+  padding-bottom: 120px;
+}
+
 </style>
 </head>
 
@@ -297,29 +412,9 @@ filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6))
 <div class="header-bg"></div>
 
 
-<!-- MENU OVERLAY -->
-<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()">
-  <nav class="menu" id="menu" onclick="event.stopPropagation()">
-    <ul>
-      <li><a href="WIIF.html" onclick="closeMenu()">Who Is It For</a></li>
-      <li><a href="wtpe.html" onclick="closeMenu()">Why This Product Exists</a></li>
-      <li><a href="price.html" onclick="closeMenu()">Pricing & Packages</a></li>
-      <li><a href="faq.html" onclick="closeMenu()">FAQ</a></li>
-      <li><a href="founder.html" onclick="closeMenu()">Founder</a></li>
-      <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-      <li><a href="terms.html" onclick="closeMenu()">Terms of Use</a></li>
-      <li><a href="privacy.html" onclick="closeMenu()">Privacy Policy</a></li>
-    </ul>
-  </nav>
-</div>
-
 <!-- HEADER -->
 <header class="site-header">
-  <div class="burger" onclick="toggleMenu()">
-    <span></span>
-  </div>
-
-  <img src="cwt.png" alt="Comluk Solutions logo" class="site-logo" />
+<img src="cwt.png" alt="Comluk Solutions logo" class="site-logo" />
 
   <h1 class="welcome-title">WELCOME TO COMLUK SOLUTIONS</h1>
   <p class="welcome-sub">Simple digital business cards, built to last.</p>
@@ -440,7 +535,7 @@ filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6))
   <section class="card">
     <div class="card-inner light">
       <h2>How It’s Offered</h2>
-      <div class="image-area"><img src="08.png" alt=""></div>
+      <div class="image-area"><img src="10.png" alt=""></div>
       <div class="text-area">
         <ul>
           <li>Individual profiles</li>
@@ -452,8 +547,25 @@ filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6))
     </div>
   </section>
 
+  <!-- PROCESS CARD (NEW) -->
   <section class="card">
     <div class="card-inner dark">
+      <h2>The Process</h2>
+      <div class="image-area"><img src="11.png" alt=""></div>
+      <div class="text-area">
+        <ul>
+          <li>Choose a package and make payment</li>
+          <li>Receive a confirmation email</li>
+          <li>Submit your information through the onboarding form</li>
+          <li>Your digital business card is prepared and delivered</li>
+        </ul>
+      </div>
+      <div class="cta"><a href="hiw.html#after-purchase">More info</a></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-inner light">
       <h2>Pricing & Next Step</h2>
       <div class="image-area"><img src="09.png" alt=""></div>
       <div class="text-area">
@@ -465,17 +577,45 @@ filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6))
 
 </div>
 
-<script>
-  function toggleMenu() {
-    document.getElementById("menu").classList.toggle("open");
-    document.getElementById("menuOverlay").classList.toggle("open");
-  }
 
-  function closeMenu() {
-    document.getElementById("menu").classList.remove("open");
-    document.getElementById("menuOverlay").classList.remove("open");
-  }
+<!-- LAUNCHER -->
+<div class="launcher-overlay" id="launcherOverlay" onclick="closeLauncher()"></div>
+
+<div class="launcher" id="launcher">
+  <a href="WIIF.html" onclick="closeLauncher()"><span>Who Is It For</span><span class="dot"></span></a>
+  <a href="wtpe.html" onclick="closeLauncher()"><span>Why This Product Exists</span><span class="dot"></span></a>
+  <a href="price.html" onclick="closeLauncher()"><span>Pricing & Packages</span><span class="dot"></span></a>
+  <a href="faq.html" onclick="closeLauncher()"><span>FAQ</span><span class="dot"></span></a>
+  <a href="founder.html" onclick="closeLauncher()"><span>Founder</span><span class="dot"></span></a>
+  <a href="contact.html" onclick="closeLauncher()"><span>Contact</span><span class="dot"></span></a>
+  <a href="terms.html" onclick="closeLauncher()"><span>Terms of Use</span><span class="dot"></span></a>
+  <a href="privacy.html" onclick="closeLauncher()"><span>Privacy Policy</span><span class="dot"></span></a>
+</div>
+
+<div class="burger" id="burger" onclick="toggleLauncher()">
+  <span></span>
+</div>
+
+<script>
+function toggleLauncher() {
+  var burger = document.getElementById('burger');
+  var launcher = document.getElementById('launcher');
+  var overlay = document.getElementById('launcherOverlay');
+  var isOpen = launcher.classList.toggle('open');
+
+  burger.classList.toggle('active', isOpen);
+  overlay.classList.toggle('open', isOpen);
+  document.body.classList.toggle('launcher-open', isOpen);
+}
+
+function closeLauncher() {
+  document.getElementById('burger').classList.remove('active');
+  document.getElementById('launcher').classList.remove('open');
+  document.getElementById('launcherOverlay').classList.remove('open');
+  document.body.classList.remove('launcher-open');
+}
 </script>
+
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">
   <div class="footer-inner">
