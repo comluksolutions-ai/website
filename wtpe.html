@@ -236,6 +236,40 @@ body {
   height: 18px;
   display: block;
 }
+
+/* =========================
+   CLEAN TOUCH INTERACTION
+   ========================= */
+
+/* Remove Android blue tap highlight */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hide focus ring for touch/mouse, keep for keyboard */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+[tabindex]:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* =========================
+   SUBTLE TAP FEEDBACK
+   ========================= */
+
+/* Smooth tap animation */
+a,
+button {
+  transition: transform 0.12s ease;
+  transform-origin: center;
+}
+
+/* Slight scale on tap */
+a:active,
+button:active {
+  transform: scale(2);
+}
+
 </style>
 
 </head>

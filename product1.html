@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Template Demonstration – Comluk</title>
+
+<style>
+:root {
+  --radius: 28px;
+  --pad: 26px;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Radial gradient center */
+  --gx: 50%;
+  --gy: 120px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: #111;
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(circle at var(--gx) var(--gy),
+      #f2f2f2 0%,
+      #f2f2f2 3%,
+      #dedede 3%,
+      #dedede 7%,
+      #c8c8c8 7%,
+      #c8c8c8 12%,
+      #b0b0b0 12%,
+      #b0b0b0 18%,
+      #969696 18%,
+      #969696 25%,
+      #7c7c7c 25%,
+      #7c7c7c 33%,
+      #626262 33%,
+      #626262 42%,
+      #4a4a4a 42%,
+      #4a4a4a 100%
+    );
+}
+
+/* ===== HEADER ===== */
+.header {
+  position: relative;
+  z-index: 2;
+  padding: 32px 24px 16px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.logo-anchor { display: inline-block; }
+
+.header img {
+  max-width: 140px;
+  display: block;
+}
+
+.header h1 {
+  margin: 16px 0 0;
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+/* ===== CONTENT ===== */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* ===== CARD ===== */
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: var(--pad);
+  margin-bottom: 28px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.30);
+}
+
+/* ===== TABS ===== */
+.tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.tab {
+  flex: 0 0 auto;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #eaeaea;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: default;
+  white-space: nowrap;
+}
+
+.tab.active {
+  background: #000;
+  color: #fff;
+}
+
+/* ===== TEMPLATE CONTAINER ===== */
+.template-shell {
+  background: #f6f6f6;
+  border-radius: 22px;
+  padding: 16px;
+}
+
+/* iframe wrapper to visually separate */
+.template-frame {
+  width: 100%;
+  height: 820px;
+  border: none;
+  border-radius: 16px;
+  background: #fff;
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #e0e0e0;
+  padding: 30px 16px 40px;
+}
+
+/* ===== DEMO INFO + STICKY TABS (ADDITIVE ONLY) ===== */
+.demo-info p {
+  margin: 0 0 12px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.demo-info p:last-child {
+  margin-bottom: 0;
+}
+
+.demo-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: transparent;
+}
+
+/* ===== STACKED TAB CAROUSEL (PHASE 1) ===== */
+.demo-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: transparent;
+}
+
+.tabs {
+  position: relative;
+  width: 100%;
+  height: 64px;
+  overflow: hidden;
+}
+
+.tab {
+  position: absolute;
+  inset: 0;
+  padding: 0 20px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  background: #e0e0e0;
+  color: #111;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+  transition: transform 280ms ease, background-color 220ms ease, color 220ms ease, opacity 220ms ease;
+  cursor: pointer;
+}
+
+.tab::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.35);
+}
+
+.tab.active {
+  background: #000;
+  color: #fff;
+}
+
+.tab.active::after {
+  background: #fff;
+}
+
+.tab.pos-0 { transform: translateX(0); z-index: 5; opacity: 1; }
+.tab.pos-1 { transform: translateX(12%); z-index: 4; opacity: 0.9; }
+.tab.pos-2 { transform: translateX(24%); z-index: 3; opacity: 0.8; }
+.tab.pos-3 { transform: translateX(36%); z-index: 2; opacity: 0.7; }
+.tab.pos-4 { transform: translateX(48%); z-index: 1; opacity: 0.6; }
+
+
+/* ===== STACKED TAB CAROUSEL (PHASE 1.1 – STAGGERED WIDTHS) ===== */
+
+.tabs {
+  position: relative;
+  width: 100%;
+  height: 64px;
+  overflow: hidden;
+}
+
+.tab {
+  position: absolute;
+  top: 0;
+  height: 64px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  background: #e0e0e0;
+  color: #111;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+  transition:
+    left 320ms ease,
+    width 320ms ease,
+    background-color 220ms ease,
+    color 220ms ease,
+    opacity 220ms ease;
+  cursor: pointer;
+}
+
+.tab::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.35);
+}
+
+.tab.active {
+  background: #000;
+  color: #fff;
+}
+
+.tab.active::after {
+  background: #fff;
+}
+
+/* Front → back stagger */
+.tab.pos-0 {
+  left: 0%;
+  width: 62%;
+  z-index: 5;
+  opacity: 1;
+}
+
+.tab.pos-1 {
+  left: 58%;
+  width: 28%;
+  z-index: 4;
+  opacity: 0.9;
+}
+
+.tab.pos-2 {
+  left: 72%;
+  width: 22%;
+  z-index: 3;
+  opacity: 0.8;
+}
+
+.tab.pos-3 {
+  left: 82%;
+  width: 18%;
+  z-index: 2;
+  opacity: 0.7;
+}
+
+.tab.pos-4 {
+  left: 90%;
+  width: 14%;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+
+/* ===== STACKED TAB CAROUSEL (PHASE 1.2 – INVERTED STACK + LABEL CONTROL) ===== */
+
+.tab {
+  overflow: hidden;
+}
+
+.tab .tab-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Hide labels unless active */
+.tab:not(.active) .tab-label {
+  opacity: 0;
+}
+
+/* Active tab shows label */
+.tab.active .tab-label {
+  opacity: 1;
+}
+
+/* Active = shortest, back tabs = wider */
+.tab.pos-0 {
+  left: 0%;
+  width: 42%;
+  z-index: 5;
+  opacity: 1;
+}
+
+.tab.pos-1 {
+  left: 0%;
+  width: 56%;
+  z-index: 4;
+  opacity: 0.9;
+}
+
+.tab.pos-2 {
+  left: 0%;
+  width: 70%;
+  z-index: 3;
+  opacity: 0.8;
+}
+
+.tab.pos-3 {
+  left: 0%;
+  width: 85%;
+  z-index: 2;
+  opacity: 0.7;
+}
+
+.tab.pos-4 {
+  left: 0%;
+  width: 100%;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+
+/* ===== STACKED TAB CAROUSEL (PHASE 1.4 – ACTIVE TAB WIDTH CAP) ===== */
+
+/* Cap active tab to 65% so inactive tabs remain visible */
+.tab.pos-0 {
+  width: 65%;
+  min-width: 65%;
+  max-width: 65%;
+}
+
+/* Ensure active label never clips */
+.tab.active .tab-label {
+  overflow: visible;
+  text-overflow: unset;
+}
+
+
+/* ===== PHASE 2: TEMPLATE FEEDBACK + SWIPE ===== */
+.template-full.is-updating {
+  filter: blur(4px);
+  opacity: 0.6;
+  transition: filter 200ms ease, opacity 200ms ease;
+}
+.template-full {
+  transition: filter 200ms ease, opacity 200ms ease;
+}
+
+
+/* ===== PHASE 3.1: HEADER BACKGROUND (EXPLICIT + SAFE) ===== */
+
+.header {
+  position: relative;
+  overflow: hidden; /* prevents horizontal bleed */
+}
+
+.header-bg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw;              /* full viewport width */
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.header-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35; /* subtle watermark strength */
+}
+
+.header-bg-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.0) 0%,
+    rgba(255,255,255,0.35) 45%,
+    rgba(255,255,255,0.75) 65%,
+    rgba(255,255,255,1.0) 85%
+  );
+}
+
+
+/* ===== PHASE 3.2: FULL-WIDTH HEADER BACKGROUND LAYER ===== */
+
+.page-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 320px;           /* controls vertical reach */
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.page-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+}
+
+.page-bg-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.0) 0%,
+    rgba(255,255,255,0.45) 50%,
+    rgba(255,255,255,0.85) 70%,
+    rgba(255,255,255,1.0) 100%
+  );
+}
+
+/* Lift main content above decorative layer */
+.header,
+.content,
+.demo-tabs,
+.template-full {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ===== PHASE 4: SWIPE HINT + HOME BUTTON ===== */
+
+.swipe-hint {
+  text-align: center;
+  margin: 12px auto 18px;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.swipe-hint span {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.04);
+}
+
+/* Floating Home Button */
+.home-fab {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+}
+
+.home-fab svg {
+  width: 22px;
+  height: 22px;
+  fill: #fff;
+}
+
+
+
+
+/* ===== PHASE 4.4: REMOVE BELLY + SIMPLE SWIPE HINT + STICKY/Z FIX ===== */
+
+/* Hard stop on horizontal drift (safety) */
+html, body { overflow-x: hidden; }
+
+/* Ensure sticky tab bar always stays above template */
+.demo-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: transparent;
+}
+
+/* Template should always scroll under the tabs */
+.template-full {
+  position: relative;
+  z-index: 1;
+}
+
+/* Keep stacked tab container clipped (prevents layout spill) */
+.tabs {
+  height: 64px;
+  overflow: hidden;
+}
+
+/* Inline swipe hint (inside template, above hero) */
+.template-full .swipe-inline-hint {
+  text-align: center;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  opacity: 0.65;
+  margin: 10px 0 6px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.template-full .swipe-inline-hint .chev {
+  display: inline-block;
+  padding: 0 10px;
+  font-weight: 800;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="page-bg">
+  <img src="images/hedstn.png" alt="" />
+  <div class="page-bg-fade"></div>
+</div>
+
+
+<header class="header">
+
+
+  <div class="logo-anchor" id="logoAnchor">
+    <img src="cbk.png" alt="Comluk Logo">
+  </div>
+  <h1>Template Demonstration</h1>
+</header>
+
+<main class="content">
+
+  <!-- Explanation -->
+  <section class="demo-info card">
+    <p>
+      This page demonstrates how a single, stable digital profile template can be adapted to represent different people, roles, and goals.
+    </p>
+    <p>
+      The layout you see below does not change.
+      What changes is how the same sections are labeled and filled, depending on what someone wants to showcase.
+    </p>
+    <p>
+      Use the tabs to explore different applications of the same structure.
+    </p>
+  </section>
+</main>
+
+  <section class="demo-tabs">
+    <div class="tabs">
+      <div class="tab" data-context="individual_consultant"><span class="tab-label">Individual Professional</span></div>
+<div class="tab" data-context="creative_portfolio"><span class="tab-label">Creative Portfolio</span></div>
+      <div class="tab" data-context="resume_profile"><span class="tab-label">Resume</span></div>
+      <div class="tab" data-context="team_organization"><span class="tab-label">Team / Organization</span></div>
+      <div class="tab" data-context="service_provider"><span class="tab-label">Service Provider</span></div>
+    </div>
+  </section>
+
+
+
+
+<!-- FULL-WIDTH TEMPLATE SECTION -->
+<section class="template-full">
+<style>
+/* === CONTACT TEMPLATE STYLES (VERBATIM) === */
+
+:root {
+  --color-base: #f7b731;
+  --color-bg-top: #ffffff;
+  --color-text: #111;
+  --font-head: 'HED';
+  --font-body: 'TEX';
+  --card-radius: 18px;
+  --icon-radius: 50%;
+  --shadow-soft: 0 10px 24px rgba(0,0,0,0.08);
+  --gradient-top-stop: 20%;
+}
+
+@font-face { font-family: 'HED'; src: url('image/hed.ttf'); }
+@font-face { font-family: 'TEX'; src: url('image/bod.ttf'); }
+
+* { box-sizing: border-box; margin:0; padding:0; }
+
+body {
+  font-family: var(--font-body), Arial, sans-serif;
+  min-height:100vh;
+  background: linear-gradient(
+    180deg,
+    var(--color-bg-top) 0%,
+    var(--color-bg-top) var(--gradient-top-stop),
+    var(--color-base) 100%
+  );
+  color: var(--color-text);
+}
+
+.page { max-width:420px; margin:0 auto; padding:16px; }
+
+.card {
+  background: rgba(255,255,255,0.95);
+  border-radius: var(--card-radius);
+  padding:16px;
+  margin-bottom:16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.hero-image { padding:0; position:relative; overflow:hidden; }
+.hero-image img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; }
+
+.social-row { position:absolute; bottom:10px; right:10px; display:flex; gap:8px; }
+.social-link { display:none; }
+.social-link:not([href=""]) { display:inline-flex; }
+
+.social-dot {
+  width:36px; height:36px;
+  border-radius: var(--icon-radius);
+  background: var(--color-base);
+  display:flex; align-items:center; justify-content:center;
+}
+
+.social-dot img { width:18px; height:18px; }
+
+.identity { text-align:center; }
+.name { font-family:var(--font-head); font-size:34px; }
+.title { font-size:15px; letter-spacing:2px; opacity:.85; }
+
+.section-title { font-family:var(--font-head); font-size:22px; margin-bottom:8px; }
+.about-text { font-size:14px; line-height:1.5; }
+
+.contact-list { display:grid; row-gap:10px; }
+.contact-item { display:flex; gap:10px; text-decoration:none; color:var(--color-text); }
+.contact-icon {
+  width:32px; height:32px;
+  border-radius:var(--icon-radius);
+  background:var(--color-base);
+  display:flex; align-items:center; justify-content:center;
+}
+.contact-icon img { width:16px; height:16px; }
+
+.skill-card {
+  background: color-mix(in srgb, var(--color-base) 15%, transparent);
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:12px;
+}
+.skill-title { font-family:var(--font-head); font-size:18px; }
+
+.work-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:10px;
+}
+
+.work-item {
+  display:none;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.work-item:not([href=""]) { display:block; }
+
+.work-item img {
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  display:block;
+}
+
+.no-work-text { opacity:.75; margin-top:6px; }
+.past-work:has(.work-item:not([href=""])) .no-work-text { display:none; }
+
+.lightbox {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+.lightbox:target { display:flex; }
+.lightbox img { max-width:96%; max-height:92%; }
+
+.close {
+  position:absolute;
+  top:16px; right:16px;
+  font-family:var(--font-head);
+  font-size:30px;
+  color:#fff;
+  text-decoration:none;
+}
+
+.footer { text-align:center; font-size:12px; opacity:.85; margin-top:24px; }
+.footer a { display:block; font-family:var(--font-head); color:inherit; }
+
+/* Default footer color */
+.footer {
+  color: #fff;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+/* Optional: footer on dark/colored backgrounds */
+body.dark-page .footer {
+  color: #111;
+}
+
+/* Small spacing between footer lines (safe) */
+.footer a:first-of-type {
+  margin-bottom: 6px;
+}
+
+/* 4. Slight hierarchy for footer text (optional but safe) */
+.footer {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.footer a:first-of-type {
+  margin-bottom: 6px;
+}
+
+
+.home-icon-img {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+
+/* === DEMO PAGE OVERRIDES (LOCAL ONLY) === */
+.template-full .page {
+  max-width: none;
+  width: 100%;
+}
+
+/* Disable interaction for demo */
+.template-full a,
+.template-full button {
+  pointer-events: none;
+}
+</style>
+
+
+<div class="page">
+
+<div class="swipe-inline-hint"><span class="chev">&lt;</span>SWIPE<span class="chev">&gt;</span></div>
+
+
+
+<div class="card hero-image">
+  <img src="image/prof.png">
+  <div class="social-row">
+    <a class="social-link" href="https://comluksolutions-ai.github.io/website/"><div class="social-dot"><img src="image/web.png"></div></a>
+    <a class="social-link" href=""><div class="social-dot"><img src="image/ig.png"></div></a>
+    <a class="social-link" href=""><div class="social-dot"><img src="image/in.png"></div></a>
+    <a class="social-link" href=""><div class="social-dot"><img src="image/fb.png"></div></a>
+  </div>
+</div>
+
+<div class="card identity">
+  <div class="name">COMLUK SOLUTIONS</div>
+  <div class="title">Digital Tools &amp; Platforms Company</div>
+</div>
+
+<div class="card">
+  <div class="section-title" data-bind="section.about.title">ABOUT US</div>
+  <div class="about-text">Comluk Solutions designs simple, durable digital systems that support real-world interaction rather than replace it. Our work focuses on clarity, coordination, and ownership, creating tools that quietly do their job without unnecessary complexity. We build with the long term in mind, prioritizing systems that remain useful, adaptable, and human-centered over time.</div>
+</div>
+
+<div class="card">
+  <div class="section-title">CONTACT</div>
+  <div class="contact-list">
+    <a class="contact-item" href="tel:1-876-344-2334">
+      <div class="contact-icon"><img src="image/pho.png"></div>
+      <span>1-876-344-2334</span>
+    </a>
+    <a class="contact-item" href="mailto:Comluksolutions@gmail.com">
+      <div class="contact-icon"><img src="image/mai.png"></div>
+      <span>Comluksolutions@gmail.com</span>
+    </a>
+    <a class="contact-item" href="https://wa.me/1-876-344-2334">
+      <div class="contact-icon"><img src="image/wha.png"></div>
+      <span>WhatsApp</span>
+    </a></div>
+</div>
+
+<div class="card"><div class="section-title">SERVICES</div>
+        <div class="skill-card">
+          <div class="skill-title">Digital Profile &amp; Identity Systems</div>
+          <div class="skill-text">We design digital profile systems that help people present who they are and what they offer with clarity and intention. These systems are built to be simple, durable, and adaptable across different real-world contexts.</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-title">Public-Space Digital Platforms</div>
+          <div class="skill-text">We develop digital platforms intended to live in physical spaces and support real-world interaction. Each platform is designed to connect people with information, services, or opportunities without removing the human element.</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-title">Digitally Coordinated Physical Experiences</div>
+          <div class="skill-text">We create systems that use digital tools to structure, guide, or enhance real-world activities. The technology remains in the background, quietly coordinating flow, timing, and participation while the experience itself happens between people.</div>
+        </div></div>
+
+<div class="card past-work" id="past-work">
+  <div class="section-title" data-bind="section.work.title">Product Samples</div>
+  <div class="no-work-text">No images available.</div>
+  <div class="work-grid"></div>
+</div>
+
+<footer class="footer">
+  Created by
+  
+  <a><strong>©Comluk Solutions . All rights reserved</strong></a>
+  <a href="https://comluksolutions-ai.github.io/website/" data-bind="footer.cta">Get your own page</a>
+</footer>
+
+</div>
+
+</section>
+
+<script>
+const logo = document.getElementById('logoAnchor');
+
+function updateGradientCenter() {
+  const rect = logo.getBoundingClientRect();
+  const gx = rect.left + rect.width / 2;
+  const gy = rect.top + rect.height / 2 + window.scrollY;
+
+  document.documentElement.style.setProperty('--gx', gx + 'px');
+  document.documentElement.style.setProperty('--gy', gy + 'px');
+}
+
+window.addEventListener('scroll', updateGradientCenter, { passive: true });
+window.addEventListener('resize', updateGradientCenter);
+updateGradientCenter();
+</script>
+
+
+<script>
+let CONTEXTS = {};
+let currentContext = null;
+
+fetch('context.json')
+  .then(r => r.json())
+  .then(data => {
+    CONTEXTS = data;
+    const firstKey = Object.keys(data)[0];
+    applyContext(firstKey);
+  });
+
+function applyContext(key) {
+  const ctx = CONTEXTS[key];
+  if (!ctx) return;
+
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.context === key);
+  });
+
+  if (ctx.meta.accent_color) {
+    document.documentElement.style.setProperty('--color-base', ctx.meta.accent_color);
+  }
+
+  if (ctx.meta.background_tile) {
+    document.body.style.backgroundImage =
+      `url(${ctx.meta.background_tile}),` + document.body.style.backgroundImage;
+  }
+
+  document.querySelector('.hero-image img').src = ctx.hero.image_src;
+  document.querySelector('.identity .name').textContent = ctx.hero.name;
+  document.querySelector('.identity .title').textContent = ctx.hero.title;
+
+  const socials = ['website','instagram','linkedin','facebook'];
+  document.querySelectorAll('.social-link').forEach((a,i)=>{
+    const k = socials[i];
+    a.href = ctx.hero.social[k] || '';
+  });
+
+  document.querySelector('[data-bind="section.about.title"]').textContent = ctx.about.title;
+  document.querySelector('.about-text').textContent = ctx.about.text;
+
+  const serviceTitle = document.querySelectorAll('.card > .section-title:not([data-bind])')[1];
+  serviceTitle.textContent = ctx.services.title;
+
+  const cards = document.querySelectorAll('.skill-card');
+  ctx.services.items.forEach((item,i)=>{
+    cards[i].querySelector('.skill-title').textContent = item.title;
+    cards[i].querySelector('.skill-text').textContent = item.description;
+  });
+
+  document.querySelector('[data-bind="section.work.title"]').textContent = ctx.work_samples.title;
+  const grid = document.querySelector('.work-grid');
+  grid.innerHTML = '';
+  ctx.work_samples.images.forEach(img=>{
+    const a = document.createElement('a');
+    a.className = 'work-item';
+    a.href = img.src;
+    a.innerHTML = `<img src="${img.src}" alt="${img.alt}">`;
+    grid.appendChild(a);
+  });
+}
+
+document.addEventListener('click', e => {
+  const tab = e.target.closest('.tab');
+  if (tab && tab.dataset.context) {
+    applyContext(tab.dataset.context);
+  }
+});
+</script>
+
+
+<script>
+(function () {
+  const tabsContainer = document.querySelector('.tabs');
+  if (!tabsContainer) return;
+
+  function updateStack(activeKey) {
+    const tabs = Array.from(tabsContainer.querySelectorAll('.tab'));
+    const activeIndex = tabs.findIndex(t => t.dataset.context === activeKey);
+    if (activeIndex === -1) return;
+
+    tabs.forEach(t => {
+      t.classList.remove('pos-0','pos-1','pos-2','pos-3','pos-4','active');
+      t.style.opacity = '';
+    });
+
+    tabs.forEach((tab, i) => {
+      const offset = (i - activeIndex + tabs.length) % tabs.length;
+      if (offset < 5) {
+        tab.classList.add('pos-' + offset);
+      } else {
+        tab.style.opacity = '0';
+      }
+      if (i === activeIndex) tab.classList.add('active');
+    });
+  }
+
+  const origApply = window.applyContext;
+  if (typeof origApply === 'function') {
+    window.applyContext = function (key) {
+      origApply(key);
+      updateStack(key);
+    };
+  }
+
+  const firstActive = tabsContainer.querySelector('.tab.active');
+  if (firstActive) {
+    updateStack(firstActive.dataset.context);
+  }
+})();
+</script>
+
+
+<script>
+/* ===== STACKED TAB CAROUSEL (PHASE 1.1) ===== */
+(function () {
+  const tabsContainer = document.querySelector('.tabs');
+  if (!tabsContainer) return;
+
+  function updateStack(activeKey) {
+    const tabs = Array.from(tabsContainer.querySelectorAll('.tab'));
+    const activeIndex = tabs.findIndex(t => t.dataset.context === activeKey);
+    if (activeIndex === -1) return;
+
+    tabs.forEach(t => {
+      t.classList.remove('pos-0','pos-1','pos-2','pos-3','pos-4','active');
+    });
+
+    tabs.forEach((tab, i) => {
+      const offset = (i - activeIndex + tabs.length) % tabs.length;
+      if (offset < 5) {
+        tab.classList.add('pos-' + offset);
+      } else {
+        tab.style.opacity = '0';
+      }
+      if (i === activeIndex) tab.classList.add('active');
+    });
+  }
+
+  const origApply = window.applyContext;
+  if (typeof origApply === 'function') {
+    window.applyContext = function (key) {
+      origApply(key);
+      updateStack(key);
+    };
+  }
+
+  const firstActive = tabsContainer.querySelector('.tab.active');
+  if (firstActive) {
+    updateStack(firstActive.dataset.context);
+  }
+})();
+</script>
+
+
+<script>
+/* ===== PHASE 2: SWIPE + BLUR CONFIRMATION ===== */
+(function () {
+  const template = document.querySelector('.template-full');
+  const tabs = Array.from(document.querySelectorAll('.tab'));
+  if (!template || tabs.length === 0) return;
+
+  let startX = null;
+
+  function getActiveIndex() {
+    return tabs.findIndex(t => t.classList.contains('active'));
+  }
+
+  function activateByIndex(idx) {
+    if (idx < 0 || idx >= tabs.length) return;
+    const key = tabs[idx].dataset.context;
+    if (!key) return;
+
+    template.classList.add('is-updating');
+    applyContext(key);
+
+    setTimeout(() => {
+      template.classList.remove('is-updating');
+    }, 220);
+  }
+
+  template.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  template.addEventListener('touchend', e => {
+    if (startX === null) return;
+    const endX = e.changedTouches[0].clientX;
+    const dx = endX - startX;
+    const threshold = 50;
+
+    const active = getActiveIndex();
+    if (dx > threshold) {
+      activateByIndex(active - 1);
+    } else if (dx < -threshold) {
+      activateByIndex(active + 1);
+    }
+    startX = null;
+  });
+})();
+</script>
+
+
+<a href="index.html" class="home-fab" aria-label="Home">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 3L3 11h2v9h6v-6h2v6h6v-9h2z"/>
+  </svg>
+</a>
+
+</body>
+</html>

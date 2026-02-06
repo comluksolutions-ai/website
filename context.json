@@ -1,0 +1,262 @@
+{
+  "individual_consultant": {
+    "meta": {
+      "label": "Individual Professional",
+      "accent_color": "#b81f3e",
+      "background_tile": ""
+    },
+
+    "hero": {
+      "image_src": "images/bp.png",
+      "name": "Jordan Blake",
+      "title": "Independent Consultant",
+
+      "social": {
+        "website": "https://example.com",
+        "linkedin": "https://linkedin.com/in/example",
+        "instagram": "",
+        "facebook": ""
+      }
+    },
+
+    "about": {
+      "title": "ABOUT",
+      "text": "I am an independent consultant focused on providing clear, practical guidance to individuals and small organizations. My work centers on understanding real problems, identifying workable solutions, and delivering outcomes that fit the situation rather than forcing generic frameworks.\n\nI work directly with clients, maintain hands-on involvement throughout each engagement, and prioritize clarity, reliability, and long-term value."
+    },
+
+    "services": {
+      "title": "SERVICES",
+      "items": [
+        {
+          "title": "Consulting & Advisory",
+          "description": "One-on-one professional guidance tailored to specific challenges, goals, and operational realities."
+        },
+        {
+          "title": "Project Support",
+          "description": "Hands-on assistance with planning, execution, and follow-through to ensure work is completed effectively."
+        },
+        {
+          "title": "Ongoing Guidance",
+          "description": "Continued support, refinement, and problem-solving as needs evolve over time."
+        }
+      ]
+    },
+
+    "work_samples": {
+      "title": "WORK SAMPLES",
+      "images": [
+        { "src": "images/bp1.png", "alt": "Consulting project overview" },
+        { "src": "images/bp2.png", "alt": "Process improvement documentation" }
+      ]
+    }
+  },
+
+  "creative_portfolio": {
+    "meta": {
+      "label": "Creative Portfolio",
+      "accent_color": "teal",
+      "background_tile": "images/cpbg.png"
+    },
+
+    "hero": {
+      "image_src": "images/cp.png",
+      "name": "Adrian Powell",
+      "title": "Visual Designer & Illustrator",
+
+      "social": {
+        "website": "https://example.com",
+        "linkedin": "",
+        "instagram": "https://instagram.com/example",
+        "facebook": ""
+      }
+    },
+
+    "about": {
+      "title": "ABOUT",
+      "text": "I’m a creative professional focused on translating ideas into visual experiences. My work blends structure with experimentation, balancing clarity and expression across digital and physical mediums.\n\nI approach each project as a collaboration, shaping concepts through iteration, attention to detail, and a strong respect for the intended audience."
+    },
+
+    "services": {
+      "title": "CAPABILITIES",
+      "items": [
+        {
+          "title": "Visual Design",
+          "description": "Branding, layout, and visual systems across digital and print formats."
+        },
+        {
+          "title": "Illustration & Graphics",
+          "description": "Custom illustrations, iconography, and expressive visual assets."
+        },
+        {
+          "title": "Creative Direction",
+          "description": "Concept development, visual storytelling, and aesthetic guidance."
+        }
+      ]
+    },
+
+    "work_samples": {
+      "title": "PORTFOLIO",
+      "images": [
+        { "src": "images/ues.png", "alt": "Design sample 1" },
+        { "src": "images/cs.jpg", "alt": "Design sample 2" }
+      ]
+    }
+  },
+
+  "resume_profile": {
+    "meta": {
+      "label": "Resume",
+      "accent_color": "#f0b30e",
+      "background_tile": ""
+    },
+
+    "hero": {
+      "image_src": "images/rm.png",
+      "name": "Alex Brighton",
+      "title": "Professional Profile",
+
+      "social": {
+        "website": "",
+        "linkedin": "https://linkedin.com/in/example",
+        "instagram": "",
+        "facebook": ""
+      }
+    },
+
+    "about": {
+      "title": "PROFESSIONAL SUMMARY",
+      "text": "Detail-oriented professional with experience across technical, operational, and collaborative environments. Known for reliability, clear communication, and the ability to adapt quickly to new responsibilities.\n\nBackground includes hands-on project work, cross-functional coordination, and continuous skill development."
+    },
+
+    "services": {
+      "title": "EXPERIENCE",
+      "items": [
+        {
+          "title": "Professional Experience",
+          "description": "Experience contributing to projects, daily operations, and structured work environments."
+        },
+        {
+          "title": "Technical Skills",
+          "description": "Working knowledge of relevant tools, systems, and workflows used in professional settings."
+        },
+        {
+          "title": "Certifications & Training",
+          "description": "Completed certifications, formal training, and ongoing professional development."
+        }
+      ]
+    },
+
+    "work_samples": {
+      "title": "CREDENTIALS",
+      "images": [
+        { "src": "images/rmd.png", "alt": "Professional certificate" },
+        { "src": "images/rmc.png", "alt": "Training completion certificate" }
+      ]
+    }
+  },
+
+  "team_organization": {
+    "meta": {
+      "label": "Team / Organization",
+      "accent_color": "#000000",
+      "background_tile": "Hedr.png"
+    },
+
+    "hero": {
+      "image_src": "images/cs.jpg",
+      "name": "COMLUK SOLUTIONS",
+      "title": "Digital Tools & Platforms Company",
+
+      "social": {
+        "website": "https://example.com",
+        "linkedin": "https://linkedin.com/company/example",
+        "instagram": "",
+        "facebook": "https://facebook.com/example"
+      }
+    },
+
+    "about": {
+      "title": "ABOUT US",
+      "text": "We are an organization focused on building clear, reliable systems that support people and real-world interaction. Our work emphasizes simplicity, durability, and thoughtful design across both digital and physical environments.\n\nWe operate as a collaborative team, combining practical experience with long-term thinking to deliver tools that remain useful over time."
+    },
+
+    "services": {
+      "title": "WHAT WE DO",
+      "items": [
+        {
+          "title": "Platform Development",
+          "description": "Designing and building digital systems that support coordination, access, and usability in real-world contexts."
+        },
+        {
+          "title": "Systems Design",
+          "description": "Creating structured, repeatable solutions that balance flexibility with long-term stability."
+        },
+        {
+          "title": "Deployment & Support",
+          "description": "Implementing solutions in live environments and providing ongoing refinement as needs evolve."
+        }
+      ]
+    },
+
+    "work_samples": {
+      "title": "OUR WORK",
+      "images": [
+        { "src": "", "alt": "Deployed platform example" },
+        { "src": "", "alt": "System in use" },
+        { "src": "", "alt": "Project overview" }
+      ]
+    }
+  },
+
+  "service_provider": {
+    "meta": {
+      "label": "Service Provider",
+      "accent_color": "#b999a2",
+      "background_tile": "images/tiles/salon-tile.png"
+    },
+
+    "hero": {
+      "image_src": "images/ues.png",
+      "name": "URBAN EDGE Salon",
+      "title": "Professional Hair & Grooming Services",
+
+      "social": {
+        "website": "https://example.com",
+        "linkedin": "",
+        "instagram": "https://instagram.com/example",
+        "facebook": "https://facebook.com/example"
+      }
+    },
+
+    "about": {
+      "title": "ABOUT",
+      "text": "Urban Edge Salon provides professional hair and grooming services focused on technique, consistency, and personal style. We work with a wide range of hair types and preferences, offering services that balance current trends with proven methods.\n\nOur approach emphasizes consultation, precision, and care to ensure each client leaves confident and satisfied."
+    },
+
+    "services": {
+      "title": "SERVICES",
+      "items": [
+        {
+          "title": "Cutting & Styling",
+          "description": "Precision cutting and styling techniques tailored to face shape, hair texture, and personal preference."
+        },
+        {
+          "title": "Color & Treatment",
+          "description": "Professional coloring, toning, and conditioning treatments designed to enhance and protect hair health."
+        },
+        {
+          "title": "Protective & Specialty Styles",
+          "description": "Braiding, loc maintenance, protective styles, and specialty techniques performed with care and expertise."
+        }
+      ]
+    },
+
+    "work_samples": {
+      "title": "OUR WORK",
+      "images": [
+        { "src": "images/ues1.png", "alt": "Hair styling result" },
+        { "src": "images/ues2.png", "alt": "Color treatment example" }
+      ]
+    }
+  }
+}
