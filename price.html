@@ -10,21 +10,17 @@
   --radius: 28px;
   --pad: 24px;
   --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-
-  /* Radial gradient center (updated via JS) */
   --gx: 50%;
   --gy: 120px;
 }
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 body {
   margin: 0;
   font-family: var(--font);
   color: #111;
   overflow-x: hidden;
-
-  /* SAME RADIAL FIELD AS HIW2 */
   background:
     radial-gradient(circle at var(--gx) var(--gy),
       #f2f2f2 0%,
@@ -46,7 +42,7 @@ body {
     );
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 .header {
   padding: 40px 24px 24px;
   text-align: center;
@@ -76,7 +72,31 @@ body {
   opacity: 0.75;
 }
 
-/* ===== CONTENT ===== */
+.header {
+  padding: 40px 24px 18px;
+}
+
+.header .headline {
+  margin: 8px 0 14px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.header-divider {
+  width: 40%;
+  height: 1px;
+  margin: 0 auto 8px;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0),
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0)
+  );
+}
+
+
+/* CONTENT WRAPPER */
 .content {
   max-width: 900px;
   margin: 0 auto;
@@ -85,43 +105,56 @@ body {
   z-index: 2;
 }
 
-/* ===== CARD ===== */
-.card {
-  position: relative;
+/* PLAN CARD */
+.plan-card {
   background: #fff;
   border-radius: var(--radius);
-  padding: var(--pad);
-  margin-bottom: 32px;
-  text-align: center;
   box-shadow: 0 14px 40px rgba(0,0,0,0.30);
   overflow: hidden;
+  margin-bottom: 32px;
 }
 
-/* Bottom gradient (same system as HIW2) */
-.card::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 10%;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.30) 0%,
-    rgba(0,0,0,0.18) 40%,
-    rgba(0,0,0,0.00) 100%
-  );
-  pointer-events: none;
+/* SEGMENTED HEADER */
+.plan-tabs {
+  display: flex;
+  background: #000;
 }
 
-.plan-name {
-  font-size: 1.5rem;
+.plan-tab {
+  flex: 1;
+  text-align: center;
+  padding: 22px 12px;
   font-weight: 700;
-  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
 }
 
+.plan-tab + .plan-tab {
+  border-left: 1px solid rgba(255,255,255,0.2);
+}
+
+.plan-tab.active {
+  background: #fff;
+  color: #000;
+}
+
+/* BODY */
+.plan-body {
+  padding: 32px 24px 28px;
+  text-align: center;
+}
+
+/* ICON PLACEHOLDER */
+.plan-icon {
+  height: 90px;
+  margin-bottom: 18px;
+}
+
+/* PRICE (Reduced ~20%) */
 .price {
-  font-size: 3rem;
+  font-size: 2.4rem;
   font-weight: 800;
   margin: 8px 0 16px;
 }
@@ -129,10 +162,6 @@ body {
 .desc {
   margin-bottom: 20px;
   line-height: 1.45;
-}
-
-/* Subtle separator under description */
-.desc {
   padding-bottom: 14px;
   position: relative;
 }
@@ -183,7 +212,8 @@ ul li {
   font-weight: 600;
 }
 
-/* ===== MODAL ===== */
+/* MODAL + FOOTER + HOME BUTTON (UNCHANGED) */
+
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -254,7 +284,6 @@ ul li {
   color: #fff;
 }
 
-/* ===== HOME BUTTON ===== */
 .home-btn {
   position: fixed;
   bottom: 20px;
@@ -270,36 +299,11 @@ ul li {
   text-decoration: none;
 }
 
-.home-icon {
-  width: 16px;
-  height: 14px;
-  position: relative;
+.home-icon-img {
+  width: 18px;
+  height: 18px;
 }
 
-.home-icon::before {
-  content: "";
-  position: absolute;
-  top: -6px;
-  left: 0;
-  right: 0;
-  margin: auto;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 8px solid #fff;
-}
-
-.home-icon::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 3px;
-  width: 10px;
-  height: 8px;
-  background: #fff;
-  border-radius: 2px;
-}
-
-/* ===== FOOTER ===== */
 .site-footer {
   margin-top: 1px;
   padding: 24px 16px 40px;
@@ -311,69 +315,14 @@ ul li {
 .site-footer a {
   color: #666;
   text-decoration: none;
-  font-weight: 500;
 }
-
-.site-footer a:hover { text-decoration: underline; }
 
 .footer-inner {
   max-width: 900px;
   margin: 0 auto;
 }
 
-.footer-copy {
-  margin: 0 0 8px;
-}
-
-.footer-links {
-  margin: 0;
-}
-
-.divider {
-  margin: 0 6px;
-}
-
-.home-icon-img {
-  width: 18px;
-  height: 18px;
-  display: block;
-}
-
-/* =========================
-   CLEAN TOUCH INTERACTION
-   ========================= */
-
-/* Remove Android blue tap highlight */
-* {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Hide focus ring for touch/mouse, keep for keyboard */
-a:focus:not(:focus-visible),
-button:focus:not(:focus-visible),
-[tabindex]:focus:not(:focus-visible) {
-  outline: none;
-}
-
-/* =========================
-   SUBTLE TAP FEEDBACK
-   ========================= */
-
-/* Smooth tap animation */
-a,
-button {
-  transition: transform 0.12s ease;
-  transform-origin: center;
-}
-
-/* Slight scale on tap */
-a:active,
-button:active {
-  transform: scale(2);
-}
-
 </style>
-
 </head>
 
 <body>
@@ -381,52 +330,26 @@ button:active {
 <header class="header">
   <img src="cbk.png" alt="Comluk Logo" id="logoAnchor">
   <h1>Pricing & Packages</h1>
-  <p>All plans are one-time purchases.</p>
-  <p class="fine">No subscriptions, renewals, or ongoing platform fees.</p>
+  <p class="headline">One-time purchase. No subscriptions. No platform fees.</p>
+  <div class="header-divider"></div>
 </header>
 
 <main class="content">
 
-  <section class="card">
-    <div class="plan-name">Individual Plan</div>
-    <div class="price">USD $190</div>
-    <div class="desc">
-      Designed for individuals and solo professionals who want a simple, reliable digital business card.
-    </div>
-    <ul>
-      <li>One digital profile page</li>
-      <li>One QR code linked to that profile</li>
-      <li>Contact actions (call, email, WhatsApp)</li>
-      <li>Links to website and social media</li>
-      <li>Mobile-friendly, clean layout</li>
-    </ul>
-    <div class="details">
-      One complete, ready-to-deploy profile page<br>
-      Clear instructions for hosting and use
-    </div>
-    <a href="https://www.paypal.com/ncp/payment/H4EDCXH5HSTAE" class="buy-btn js-buy" data-paypal="https://www.paypal.com/ncp/payment/H4EDCXH5HSTAE">Buy This Package</a>
-  </section>
+  <section class="plan-card">
 
-  <section class="card">
-    <div class="plan-name">Team Plan</div>
-    <div class="price">USD $800</div>
-    <div class="desc">
-      Designed for teams, organizations, and client-facing groups deploying digital business cards at scale.
+    <div class="plan-tabs">
+      <div class="plan-tab active" data-plan="individual">INDIVIDUAL</div>
+      <div class="plan-tab" data-plan="team">TEAM</div>
     </div>
-    <ul>
-      <li>Up to 25 individual profile pages</li>
-      <li>25 unique QR codes (one per profile)</li>
-      <li>Unified layout, icons, and typography</li>
-      <li>Shared visual and styling assets</li>
-      <li>Team license agreement</li>
-    </ul>
-    <div class="details">
-      Ideal for real estate teams, sales teams, and organizations needing consistent field presence.
-    </div>
-    <a href="https://www.paypal.com/ncp/payment/B8XJN2CY7PH4L" class="buy-btn js-buy" data-paypal="https://www.paypal.com/ncp/payment/B8XJN2CY7PH4L">Buy This Package</a>
+
+    <div class="plan-body" id="planBody"></div>
+
   </section>
 
 </main>
+
+<!-- Modal + Footer + Home Button remain same -->
 
 <div class="modal-overlay" id="payModal">
   <div class="modal-card">
@@ -437,9 +360,8 @@ button:active {
       After payment, you’ll receive an email with a unique onboarding link to submit your information.
     </p>
     <p>
-      Review our <a href="terms.html" target="_blank" rel="noopener noreferrer" style="color:#fff;text-decoration:underline;">Terms of Use</a> if you’d like more details.
+      Review our <a href="terms.html" target="_blank" rel="noopener noreferrer" style="color:#fff;text-decoration:underline;">Terms of Use</a>.
     </p>
-
     <div class="modal-actions">
       <button class="modal-continue" id="payModalContinue">Continue to PayPal</button>
       <button class="modal-back" id="payModalBack">Go back</button>
@@ -447,49 +369,186 @@ button:active {
   </div>
 </div>
 
-<a href="index.html" class="home-btn" aria-label="Back to Home">
-  <img src="rtrn.png" alt="Back" class="home-icon-img">
+<a href="index.html" class="home-btn">
+  <img src="rtrn.png" class="home-icon-img">
 </a>
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <p class="footer-copy">© 2026 Comluk Solutions. All rights reserved.</p>
-    <p class="footer-links">
-      <a href="terms.html">Terms of Use</a>
-      <span class="divider">·</span>
+    <p>© 2026 Comluk Solutions. All rights reserved.</p>
+    <p>
+      <a href="terms.html">Terms of Use</a> · 
       <a href="privacy.html">Privacy Policy</a>
     </p>
   </div>
 </footer>
 
 <script>
+/* Gradient Logic */
 const logo = document.getElementById('logoAnchor');
-
 function updateGradientCenter() {
   const rect = logo.getBoundingClientRect();
   const gx = rect.left + rect.width / 2;
   const gy = rect.top + rect.height / 2 + window.scrollY;
-
   document.documentElement.style.setProperty('--gx', gx + 'px');
   document.documentElement.style.setProperty('--gy', gy + 'px');
 }
-
 window.addEventListener('scroll', updateGradientCenter, { passive: true });
 window.addEventListener('resize', updateGradientCenter);
 updateGradientCenter();
 
+/* PLAN DATA */
+const plans = {
+  individual: {
+    price: "USD $190",
+    desc: "Designed for individuals and solo professionals who want a simple, reliable digital business card.",
+    features: [
+      "One digital profile page",
+      "One QR code linked to that profile",
+      "Contact actions (call, email, WhatsApp)",
+      "Links to website and social media",
+      "Mobile-friendly, clean layout"
+    ],
+    details: "One complete, ready-to-deploy profile page<br>Clear instructions for hosting and use",
+    paypal: "https://www.paypal.com/ncp/payment/H4EDCXH5HSTAE"
+  },
+  team: {
+    price: "USD $800",
+    desc: "Designed for teams, organizations, and client-facing groups deploying digital business cards at scale.",
+    features: [
+      "Up to 25 individual profile pages",
+      "25 unique QR codes (one per profile)",
+      "Unified layout, icons, and typography",
+      "Shared visual and styling assets",
+      "Team license agreement"
+    ],
+    details: "Ideal for real estate teams, sales teams, and organizations needing consistent field presence.",
+    paypal: "https://www.paypal.com/ncp/payment/B8XJN2CY7PH4L"
+  }
+};
+
+const bodyEl = document.getElementById('planBody');
+let currentPayPal = plans.individual.paypal;
+
+function renderPlan(key) {
+  const plan = plans[key];
+  currentPayPal = plan.paypal;
+
+  const individualSVG = `
+  <svg viewBox="0 0 420 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+    <rect x="10" y="10" width="120" height="180" rx="24" ry="24"
+          fill="none" stroke="#000" stroke-width="8"/>
+    <rect x="45" y="10" width="50" height="18" rx="8" fill="#000"/>
+    <circle cx="70" cy="70" r="20" fill="#000"/>
+    <path d="M40 120 Q70 95 100 120 L100 135 Q70 155 40 135 Z" fill="#000"/>
+    <rect x="35" y="155" width="70" height="8" rx="4" fill="#000"/>
+    <rect x="50" y="170" width="40" height="8" rx="4" fill="#000"/>
+    <rect x="155" y="90" width="50" height="14" rx="7" fill="#000"/>
+    <polygon points="205,80 240,97 205,114" fill="#000"/>
+    <rect x="260" y="40" width="120" height="120" fill="#000"/>
+    <rect x="270" y="50" width="30" height="30" fill="#fff"/>
+    <rect x="275" y="55" width="20" height="20" fill="#000"/>
+    <rect x="350" y="50" width="30" height="30" fill="#fff"/>
+    <rect x="355" y="55" width="20" height="20" fill="#000"/>
+    <rect x="270" y="130" width="30" height="30" fill="#fff"/>
+    <rect x="275" y="135" width="20" height="20" fill="#000"/>
+    <rect x="310" y="60" width="12" height="12" fill="#fff"/>
+    <rect x="330" y="80" width="12" height="12" fill="#fff"/>
+    <rect x="300" y="100" width="12" height="12" fill="#fff"/>
+    <rect x="340" y="115" width="12" height="12" fill="#fff"/>
+    <rect x="320" y="135" width="12" height="12" fill="#fff"/>
+  </svg>
+  `;
+
+
+  
+  const teamSVG = `
+  <svg viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+
+    <!-- LEFT UNIT -->
+    <g transform="translate(40,40) scale(0.75)">
+      <rect x="0" y="0" width="120" height="180" rx="24" fill="none" stroke="#000" stroke-width="8"/>
+      <rect x="35" y="0" width="50" height="18" rx="8" fill="#000"/>
+      <circle cx="60" cy="60" r="20" fill="#000"/>
+      <path d="M30 110 Q60 85 90 110 L90 125 Q60 145 30 125 Z" fill="#000"/>
+      <rect x="25" y="145" width="70" height="8" rx="4" fill="#000"/>
+      <rect x="40" y="160" width="40" height="8" rx="4" fill="#000"/>
+
+      <rect x="90" y="130" width="80" height="80" fill="#000"/>
+      <rect x="98" y="138" width="20" height="20" fill="#fff"/>
+      <rect x="122" y="162" width="12" height="12" fill="#fff"/>
+      <rect x="150" y="150" width="12" height="12" fill="#fff"/>
+    </g>
+
+    <!-- CENTER UNIT (LARGER) -->
+    <g transform="translate(230,20) scale(1)">
+      <rect x="0" y="0" width="120" height="180" rx="24" fill="none" stroke="#000" stroke-width="8"/>
+      <rect x="35" y="0" width="50" height="18" rx="8" fill="#000"/>
+      <circle cx="60" cy="60" r="20" fill="#000"/>
+      <path d="M30 110 Q60 85 90 110 L90 125 Q60 145 30 125 Z" fill="#000"/>
+      <rect x="25" y="145" width="70" height="8" rx="4" fill="#000"/>
+      <rect x="40" y="160" width="40" height="8" rx="4" fill="#000"/>
+
+      <rect x="90" y="130" width="80" height="80" fill="#000"/>
+      <rect x="98" y="138" width="20" height="20" fill="#fff"/>
+      <rect x="122" y="162" width="12" height="12" fill="#fff"/>
+      <rect x="150" y="150" width="12" height="12" fill="#fff"/>
+    </g>
+
+    <!-- RIGHT UNIT -->
+    <g transform="translate(420,40) scale(0.75)">
+      <rect x="0" y="0" width="120" height="180" rx="24" fill="none" stroke="#000" stroke-width="8"/>
+      <rect x="35" y="0" width="50" height="18" rx="8" fill="#000"/>
+      <circle cx="60" cy="60" r="20" fill="#000"/>
+      <path d="M30 110 Q60 85 90 110 L90 125 Q60 145 30 125 Z" fill="#000"/>
+      <rect x="25" y="145" width="70" height="8" rx="4" fill="#000"/>
+      <rect x="40" y="160" width="40" height="8" rx="4" fill="#000"/>
+
+      <rect x="90" y="130" width="80" height="80" fill="#000"/>
+      <rect x="98" y="138" width="20" height="20" fill="#fff"/>
+      <rect x="122" y="162" width="12" height="12" fill="#fff"/>
+      <rect x="150" y="150" width="12" height="12" fill="#fff"/>
+    </g>
+
+  </svg>
+  `;
+
+
+  bodyEl.innerHTML = `
+    <div class="plan-icon">
+      ${key === 'individual' ? individualSVG : teamSVG}
+    </div>
+    <div class="price">${plan.price}</div>
+    <div class="desc">${plan.desc}</div>
+    <ul>${plan.features.map(f => `<li>${f}</li>`).join('')}</ul>
+    <div class="details">${plan.details}</div>
+    <a href="${plan.paypal}" class="buy-btn js-buy">Buy This Package</a>
+  `;
+}
+
+renderPlan('individual');
+
+document.querySelectorAll('.plan-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.plan-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    renderPlan(this.dataset.plan);
+  });
+});
+
+/* Modal Logic */
 (function () {
   var modal = document.getElementById('payModal');
   var btnContinue = document.getElementById('payModalContinue');
   var btnBack = document.getElementById('payModalBack');
   var pendingUrl = null;
 
-  document.querySelectorAll('.js-buy').forEach(function (a) {
-    a.addEventListener('click', function (e) {
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('js-buy')) {
       e.preventDefault();
-      pendingUrl = a.getAttribute('data-paypal') || a.getAttribute('href');
+      pendingUrl = currentPayPal;
       modal.style.display = 'flex';
-    });
+    }
   });
 
   btnContinue.addEventListener('click', function () {
